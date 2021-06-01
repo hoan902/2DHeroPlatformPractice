@@ -18,20 +18,29 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     float extraHeight = 1f;
+
     [SerializeField]
     float m_rollForce = 6.0f;
+
     [SerializeField]
     float rollingRate = 2f;
-    float nextRollingTime = 0f;
 
-    private Animator animator;
-    private Rigidbody2D rgbd2d;
-    private BoxCollider2D boxCollider2D;
-    private CircleCollider2D circleCollider2D;
-    private SpriteRenderer spriteRenderer;
-    private bool isAtking = false;
+    [SerializeField]
+    float AtkingRate = 0.35f;
+
+    float nextRollingTime = 0f;
+    float AtkingTime = 0f;
+
+    private int m_facingDirection = 1;
+    private Animator m_animator;
+    private Rigidbody2D m_rgbd2d;
+    private BoxCollider2D m_boxCollider2D;
+    private CircleCollider2D m_circleCollider2D;
+    private SpriteRenderer m_spriteRenderer;
+    private bool m_isAtking = false;
     private bool m_rolling = false;
-    private string buttonPress;
+    private float m_delayToIdle = 0.0f;
+    private string m_buttonPress;
 
     public TextMeshProUGUI Timer;
     public Text RollCooldownUI;
@@ -42,92 +51,32 @@ public class PlayerMovement : MonoBehaviour
     public const string Atk = "Atk";
     public const string RollRight = "RollingRight";
     public const string RollLeft = "RollingLeft";
+    public const string Roll = "Rolling";
     public const string Crouch = "Crouch";
+    int atkStyleChange = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        rgbd2d = GetComponent<Rigidbody2D>();
-        boxCollider2D = GetComponent<BoxCollider2D>();
-        circleCollider2D = GetComponent<CircleCollider2D>();
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        m_rgbd2d = GetComponent<Rigidbody2D>();
+        m_boxCollider2D = GetComponent<BoxCollider2D>();
+        m_circleCollider2D = GetComponent<CircleCollider2D>();
+        m_animator = GetComponent<Animator>();
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= nextRollingTime - 0.5f && !m_rolling)
-        {
-            boxCollider2D.enabled = true;
-        }
-        string TimeCount = Math.Round(Time.time, 2).ToString();
-        Timer.text = "Timer: " + TimeCount;
-        //------ Assign key  ------
-        if (Input.GetKey(KeyCode.S) && IsGrounded() && !m_rolling)
-        {
-                buttonPress = Crouch;
-        }
-
-
-
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            m_rolling = false;
-            buttonPress = Right;
-            //-- CD for next roll --
-            if (Input.GetKey(KeyCode.S) && IsGrounded() && !m_rolling)
-            {
-                if  (Time.time >= nextRollingTime)
-                {
-                    m_rolling = true;
-                    buttonPress = RollRight;
-                }
-            }
-        }
-        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            m_rolling = false;
-            buttonPress = Left;
-            if  (Input.GetKey(KeyCode.S) && IsGrounded() && !m_rolling)
-            {
-                if (Time.time >= nextRollingTime)
-                {
-                    m_rolling = true;
-                    buttonPress = RollLeft;
-                }
-            }
-        }
-        else
-        {
-            buttonPress = null;
-        }
-
-
-
-        //--- jumping assign key --
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space))
-        {
-            if (IsGrounded())
-                buttonPress = Jump;
-        }
-
-
-
-        //--- Atking assign key --
-        if (Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.Z))
-        {
-            buttonPress = Atk;
-            isAtking = true;
-        }
-    }
-    void FixedUpdate()
-    {
         //--- Checking UI Rolling CD ---
+        IsGrounded();
+        //CeilingCheck();
         float remainingCD = nextRollingTime - Time.time;
         if (remainingCD > 0)
         {
-            RollCooldownUI.text = "Rolling CD: " + Math.Round(remainingCD,1).ToString();
+            RollCooldownUI.text = "Rolling CD: " + Math.Round(remainingCD, 1).ToString();
             RollCooldownUIIcon.fillAmount = remainingCD;
         }
         else
@@ -135,181 +84,214 @@ public class PlayerMovement : MonoBehaviour
             RollCooldownUIIcon.fillAmount = 0;
             RollCooldownUI.text = "Rolling CD: Ready";
         }
-        
 
+        //---- timer ----
+        string TimeCount = Math.Round(Time.time, 2).ToString();
+        Timer.text = "Timer: " + TimeCount;
 
+        //====== Assign key ======
+        if (Input.GetKey(KeyCode.S) && IsGrounded() && !m_rolling)
+        {
+            //m_buttonPress = Crouch;
+        }
+        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && !m_rolling && m_boxCollider2D.enabled)
+        {
+            m_buttonPress = Right;
+        }
+        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !m_rolling && m_boxCollider2D.enabled)
+        {
+            m_buttonPress = Left;
+        }
+        else
+        {
+            m_buttonPress = null;
+        }
 
+        //--- jumping assign key --
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && !m_rolling && IsGrounded())
+        {
+            m_boxCollider2D.enabled = true;
+            m_buttonPress = Jump;
+        }
+
+        //--- Atking assign key --
+        if ((Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.Z)) && Time.time >= AtkingTime && !m_rolling)
+        {
+            m_boxCollider2D.enabled = true;
+            m_buttonPress = Atk;
+            m_isAtking = true;
+        }else if (Input.GetKey(KeyCode.L) && !m_rolling && Time.time >= nextRollingTime)
+        {
+            m_buttonPress = Roll;
+        }
+    }
+    void FixedUpdate()
+    {
+        //---------------------------------------------------------
         //------ ButtonPress trigger animation and functions ------
-        //=== 1. Always update Player characters Y velocity for ground check ===
-        animator.SetFloat("AirSpeedY", rgbd2d.velocity.y);
+        //---------------------------------------------------------
+        //=============================================================================================
+        //=== 1. Always update Player characters Y velocity for ground check (jumping or falling) ====
+        //=============================================================================================
+        m_animator.SetFloat("AirSpeedY", m_rgbd2d.velocity.y);
 
 
-
-        //=== 2. Movements on ground ===
-        //*** Moving RIGHT ***
-        if (buttonPress == Crouch)
+        //===============================
+        //=== 2. Movements and Atk   ====
+        //===============================
+        //*** Crounching ***
+        if (m_buttonPress == Crouch)
         {
-            //make it like run but slow speed and disable box
-            if (IsGrounded() && !m_rolling)
-            {
-                //animator.SetTrigger("Crouch");
-            }
-            //transform.localScale = new Vector3(0.3f, 0.3f, 1.6f);
+            m_animator.SetTrigger("Crouch");
         }
-
-
 
         //*** Moving RIGHT ***
-        if (buttonPress == Right)
+        if (m_buttonPress == Right)
         {
-            rgbd2d.velocity = new Vector2(movementSpd, rgbd2d.velocity.y);
-            if (IsGrounded() && !m_rolling)
+            Debug.LogError("Velocity check Right: " + m_rgbd2d.velocity);
+            GetComponent<SpriteRenderer>().flipX = false;
+            m_facingDirection = 1;
+            m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
+            if (IsGrounded() && !m_rolling && m_rgbd2d.velocity.x != 0 && m_rgbd2d.velocity.y == 0)
             {
-                animator.SetInteger("AnimState", 1);
+                m_delayToIdle = 0.05f;
+                m_animator.SetInteger("AnimState", 1);
             }
-            spriteRenderer.flipX = false;
-            //transform.localScale = new Vector3(0.3f, 0.3f, 1.6f);
         }
-
-
-
-        //*** ROLL to the RIGHT ***
-        else if (buttonPress == RollRight)
-        {
-            Vector2 rollRight = new Vector2(rgbd2d.position.x + m_rollForce * Time.deltaTime, rgbd2d.position.y);
-            rgbd2d.MovePosition(rollRight);
-            //rgbd2d.velocity = new Vector2(movementSpd * m_rollForce * Time.deltaTime, rgbd2d.velocity.y);
-            isAtking = false;
-            if (IsGrounded() && m_rolling)
-            {
-                animator.Play("Roll");
-                nextRollingTime = Time.time + rollingRate;
-            }
-            boxCollider2D.enabled = false;
-            spriteRenderer.flipX = false;
-            //transform.localScale = new Vector3(0.3f, 0.3f, 1.6f);
-
-        }
-
-
 
         //*** Moving LEFT ***
-        else if (buttonPress == Left)
+        else if (m_buttonPress == Left)
         {
-            rgbd2d.velocity = new Vector2(-movementSpd, rgbd2d.velocity.y);
-            if (IsGrounded() && !m_rolling)
+            Debug.LogError("Velocity check Left: " + m_rgbd2d.velocity);
+            GetComponent<SpriteRenderer>().flipX = true;
+            m_facingDirection = -1;
+            m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
+            if (IsGrounded() && !m_rolling && m_rgbd2d.velocity.x != 0 && m_rgbd2d.velocity.y == 0)
             {
-                animator.SetInteger("AnimState", 1);
+                m_delayToIdle = 0.05f;
+                m_animator.SetInteger("AnimState", 1);
             }
-            spriteRenderer.flipX = true;
-            //transform.localScale = new Vector3(-0.3f, 0.3f, 1.6f);
         }
 
-
-
-        //*** ROLL to the LEFT ***
-        else if (buttonPress == RollLeft)
+        else if (m_buttonPress == Roll)
         {
-            Vector2 rollLeft = new Vector2(rgbd2d.position.x - m_rollForce * Time.deltaTime, rgbd2d.position.y);
-            rgbd2d.MovePosition(rollLeft);
-            //rgbd2d.velocity = new Vector2(-movementSpd * m_rollForce * Time.deltaTime, rgbd2d.velocity.y);
-            isAtking = false;
-            if (IsGrounded() && m_rolling)
-            {
-                animator.Play("Roll");
-                nextRollingTime = Time.time + rollingRate;
-            }
-            boxCollider2D.enabled = false;
-            spriteRenderer.flipX = true;
-            //transform.localScale = new Vector3(-0.3f, 0.3f, 1.6f);
+            Debug.LogError("Velocity check Roll: " + m_rgbd2d.velocity);
+            m_rolling = true;
+            m_animator.SetTrigger("Roll");
+            m_rgbd2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_rgbd2d.velocity.y);
+            nextRollingTime = Time.time + rollingRate;
+            m_boxCollider2D.enabled = false;
         }
-
-
 
         //*** JUMPING ***
-        else if (buttonPress == Jump)
+        if (m_buttonPress == Jump)
         {
-            if (m_rolling == true)
-            {
-                m_rolling = false;
-            }
-            isAtking = false;
-            rgbd2d.velocity = Vector2.up * jumpForce;
-            animator.SetTrigger("Jump");
+            m_animator.SetTrigger("Jump");
+            m_animator.SetBool("Grounded", IsGrounded());
+            m_rgbd2d.velocity = Vector2.up * jumpForce;
         }
 
-
-
-
         //*** ATK ***
-        else if (buttonPress == Atk)
+        if (m_buttonPress == Atk)
         {
-            if (m_rolling == true)
+            m_isAtking = true;
+            if (atkStyleChange > 3)
             {
-                m_rolling = false;
+                atkStyleChange = 1;
+                m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
             }
-            if (IsGrounded() && !m_rolling)
+            if (IsGrounded() && !m_rolling && m_isAtking)
             {
                 //animator.Play("PlayerAtk");
-                animator.SetTrigger("Attack1");
+                m_animator.SetTrigger("Attack" + atkStyleChange);
+                atkStyleChange++;
+                AtkingTime = Time.time + AtkingRate;
             }
             else if (!IsGrounded() && !m_rolling)
             {
-                animator.SetTrigger("AirAtk");
+                m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
+                m_animator.SetTrigger("Attack3");
+                AtkingTime = Time.time + AtkingRate;
             }
-            isAtking = false;
         }
 
-
-
-
         //*** NOT DOING ANYTHING ELSE ***
-        else
+        if (m_buttonPress == null)
         {
-            animator.SetInteger("AnimState", 0);
-            isAtking = false;
-            if (m_rolling == true)
+            // Prevents flickering transitions to idle
+            m_delayToIdle -= Time.deltaTime;
+            if (m_delayToIdle < 0)
+            m_animator.SetInteger("AnimState", 0);
+            if (m_rolling)
             {
                 m_rolling = false;
             }
-            rgbd2d.velocity = new Vector2(0, rgbd2d.velocity.y);
-            if (IsGrounded() && !isAtking && !m_rolling)
+            if (m_isAtking)
             {
-                animator.Play("Idle");
+                m_isAtking = false;
             }
+            if(Time.time >= AtkingTime)
+            {
+                //m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
+            }
+            //m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
         }
     }
 
-
-
-
-    //ground check  
+    //============================== GROUND CHECK (PRIVATE BOOL) =========================================== 
     private bool IsGrounded()
     {
-        RaycastHit2D raycasthit = Physics2D.BoxCast(circleCollider2D.bounds.center, circleCollider2D.bounds.size, 0f, Vector2.down, extraHeight, platformLayerMask);
+        RaycastHit2D raycasthit = Physics2D.BoxCast(m_circleCollider2D.bounds.center, m_circleCollider2D.bounds.size, 0f, Vector2.down, extraHeight, platformLayerMask);
         Color rayColor;
         if (raycasthit.collider != null)
         {
-            animator.SetBool("Grounded", true);
+            m_animator.SetBool("Grounded", true);
             rayColor = Color.blue;
         }
         else
         {
-            animator.SetBool("Grounded", false);
+            m_animator.SetBool("Grounded", false);
             rayColor = Color.red;
         }
-        Debug.DrawRay(circleCollider2D.bounds.center + new Vector3(circleCollider2D.bounds.extents.x, 0), Vector2.down * (circleCollider2D.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(circleCollider2D.bounds.center - new Vector3(circleCollider2D.bounds.extents.x, 0), Vector2.down * (circleCollider2D.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(circleCollider2D.bounds.center - new Vector3(circleCollider2D.bounds.extents.x, circleCollider2D.bounds.extents.y), Vector2.right * (circleCollider2D.bounds.extents.x), rayColor);
+        Debug.DrawRay(m_circleCollider2D.bounds.center + new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.down * (m_circleCollider2D.bounds.extents.y + extraHeight), rayColor);
+        Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.down * (m_circleCollider2D.bounds.extents.y + extraHeight), rayColor);
+        Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, m_circleCollider2D.bounds.extents.y), Vector2.right * (m_circleCollider2D.bounds.extents.x), rayColor);
         Debug.Log(raycasthit.collider);
         return raycasthit.collider != null;
     }
 
+    //============================== Ceiling Check (PRIVATE BOOL) =========================================== 
+    private bool CeilingCheck()
+    {
+        RaycastHit2D raycasthit = Physics2D.BoxCast(m_circleCollider2D.bounds.center, m_circleCollider2D.bounds.size, 0f, Vector2.up, extraHeight, platformLayerMask);
+        Color rayColor;
+        if (raycasthit.collider != null)
+        {
+            m_animator.SetBool("ThereCeiling", true);
+            rayColor = Color.cyan;
+        }
+        else
+        {
+            m_animator.SetBool("ThereCeiling", false);
+            rayColor = Color.yellow;
+        }
+        Debug.DrawRay(m_circleCollider2D.bounds.center + new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.up * (m_circleCollider2D.bounds.extents.y + extraHeight), rayColor);
+        Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.up * (m_circleCollider2D.bounds.extents.y + extraHeight), rayColor);
+        Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, m_circleCollider2D.bounds.extents.y), Vector2.right * (m_circleCollider2D.bounds.extents.x), rayColor);
+        Debug.Log(raycasthit.collider);
+        return raycasthit.collider != null;
+    }
 
-
-
+    //---------------- Animation Events ---------------------
     void AE_ResetRoll()
     {
         m_rolling = false;
+        m_boxCollider2D.enabled = true;
+        m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
     }
+
+    void AE_IdleVelocity()
+    {
+        m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
+    }    
 }
