@@ -763,6 +763,7 @@ MonoBehaviour:
   movementSpd: 3
   jumpForce: 5
   extraHeight: 0.15
+  extraHeightCeilCheck: 0.5
   m_rollForce: 6
   rollingRate: 1
   AtkingRate: 0.35
@@ -3841,7 +3842,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.793516
+  orthographic size: 2.9080503
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3865,7 +3866,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136161188}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.7800001, y: 1.46, z: -3}
+  m_LocalPosition: {x: 1.7800001, y: 2.2, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 386906529}

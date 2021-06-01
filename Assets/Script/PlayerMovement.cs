@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     float extraHeight = 1f;
+    [SerializeField]
+    float extraHeightCeilCheck = 1f;
 
     [SerializeField]
     float m_rollForce = 6.0f;
@@ -39,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer m_spriteRenderer;
     private bool m_isAtking = false;
     private bool m_rolling = false;
+    private bool m_isCrouch = false;
     private float m_delayToIdle = 0.0f;
     private string m_buttonPress;
 
@@ -90,9 +93,10 @@ public class PlayerMovement : MonoBehaviour
         Timer.text = "Timer: " + TimeCount;
 
         //====== Assign key ======
-        if (Input.GetKey(KeyCode.S) && IsGrounded() && !m_rolling)
+        if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && IsGrounded() && !m_rolling && m_boxCollider2D.enabled)
         {
-            //m_buttonPress = Crouch;
+            m_isCrouch = true;
+            m_buttonPress = Crouch;
         }
         if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && !m_rolling && m_boxCollider2D.enabled)
         {
@@ -112,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
         {
             m_boxCollider2D.enabled = true;
             m_buttonPress = Jump;
+            m_isCrouch = false;
         }
 
         //--- Atking assign key --
@@ -120,7 +125,9 @@ public class PlayerMovement : MonoBehaviour
             m_boxCollider2D.enabled = true;
             m_buttonPress = Atk;
             m_isAtking = true;
-        }else if (Input.GetKey(KeyCode.L) && !m_rolling && Time.time >= nextRollingTime)
+            m_isCrouch = false;
+        }
+        else if (Input.GetKey(KeyCode.L) && !m_rolling && Time.time >= nextRollingTime)
         {
             m_buttonPress = Roll;
         }
@@ -140,15 +147,20 @@ public class PlayerMovement : MonoBehaviour
         //=== 2. Movements and Atk   ====
         //===============================
         //*** Crounching ***
+        if (CeilingCheck())
+        {
+            m_buttonPress = Crouch;
+        }
         if (m_buttonPress == Crouch)
         {
+            m_boxCollider2D.enabled = false;
             m_animator.SetTrigger("Crouch");
         }
+        
 
         //*** Moving RIGHT ***
         if (m_buttonPress == Right)
         {
-            Debug.LogError("Velocity check Right: " + m_rgbd2d.velocity);
             GetComponent<SpriteRenderer>().flipX = false;
             m_facingDirection = 1;
             m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
@@ -156,13 +168,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_delayToIdle = 0.05f;
                 m_animator.SetInteger("AnimState", 1);
+            }else if (IsGrounded() && !m_rolling && m_rgbd2d.velocity.x != 0 && m_rgbd2d.velocity.y == 0 && m_isCrouch)
+            {
+                m_delayToIdle = 0.05f;
+                m_animator.SetInteger("AnimState", 2);
+                m_animator.SetTrigger("Crouch");
             }
         }
 
         //*** Moving LEFT ***
         else if (m_buttonPress == Left)
         {
-            Debug.LogError("Velocity check Left: " + m_rgbd2d.velocity);
             GetComponent<SpriteRenderer>().flipX = true;
             m_facingDirection = -1;
             m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
@@ -171,11 +187,16 @@ public class PlayerMovement : MonoBehaviour
                 m_delayToIdle = 0.05f;
                 m_animator.SetInteger("AnimState", 1);
             }
+            else if (IsGrounded() && !m_rolling && m_rgbd2d.velocity.x != 0 && m_rgbd2d.velocity.y == 0 && m_isCrouch)
+            {
+                m_delayToIdle = 0.05f;
+                m_animator.SetInteger("AnimState", 2);
+                m_animator.SetTrigger("Crouch");
+            }
         }
 
         else if (m_buttonPress == Roll)
         {
-            Debug.LogError("Velocity check Roll: " + m_rgbd2d.velocity);
             m_rolling = true;
             m_animator.SetTrigger("Roll");
             m_rgbd2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_rgbd2d.velocity.y);
@@ -230,6 +251,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_isAtking = false;
             }
+            if(m_isCrouch)
+            {
+                m_isCrouch = false;
+            }
             if(Time.time >= AtkingTime)
             {
                 //m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
@@ -263,7 +288,7 @@ public class PlayerMovement : MonoBehaviour
     //============================== Ceiling Check (PRIVATE BOOL) =========================================== 
     private bool CeilingCheck()
     {
-        RaycastHit2D raycasthit = Physics2D.BoxCast(m_circleCollider2D.bounds.center, m_circleCollider2D.bounds.size, 0f, Vector2.up, extraHeight, platformLayerMask);
+        RaycastHit2D raycasthit = Physics2D.BoxCast(m_circleCollider2D.bounds.center, m_circleCollider2D.bounds.extents, 0f, Vector2.up, extraHeightCeilCheck, platformLayerMask);
         Color rayColor;
         if (raycasthit.collider != null)
         {
@@ -275,10 +300,10 @@ public class PlayerMovement : MonoBehaviour
             m_animator.SetBool("ThereCeiling", false);
             rayColor = Color.yellow;
         }
-        Debug.DrawRay(m_circleCollider2D.bounds.center + new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.up * (m_circleCollider2D.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.up * (m_circleCollider2D.bounds.extents.y + extraHeight), rayColor);
+        Debug.DrawRay(m_circleCollider2D.bounds.center + new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.up * (m_circleCollider2D.bounds.extents.y + extraHeightCeilCheck), rayColor);
+        Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.up * (m_circleCollider2D.bounds.extents.y + extraHeightCeilCheck), rayColor);
         Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, m_circleCollider2D.bounds.extents.y), Vector2.right * (m_circleCollider2D.bounds.extents.x), rayColor);
-        Debug.Log(raycasthit.collider);
+        Debug.LogWarning("Ceiling Check: " + raycasthit.collider);
         return raycasthit.collider != null;
     }
 
