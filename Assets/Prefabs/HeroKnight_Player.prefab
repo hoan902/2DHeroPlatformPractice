@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2045688727222765731}
   - component: {fileID: 2045688727222765733}
   - component: {fileID: 2045688727222765732}
+  - component: {fileID: 5901270563134030532}
   m_Layer: 0
   m_Name: HeroKnight_Player
   m_TagString: Player
@@ -202,6 +203,22 @@ CircleCollider2D:
   m_Offset: {x: -0.024051607, y: 0.36485997}
   serializedVersion: 2
   m_Radius: 0.2974538
+--- !u!114 &5901270563134030532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045688727222765727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00367f0390a14bf4ea39d9a7cfc5c4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 300
+  currentHealth: 0
+  healthBar: {fileID: 0}
+  deathEffect: {fileID: 0}
 --- !u!1 &2045688728992529769
 GameObject:
   m_ObjectHideFlags: 0

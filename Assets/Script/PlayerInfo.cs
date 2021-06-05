@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyInfo : MonoBehaviour
+public class PlayerInfo : MonoBehaviour
 {
-    public int health = 100;
+    public int maxHealth = 300;
+    public int currentHealth;
+    public PlayerHealthBar healthBar;
 
     public GameObject deathEffect;
 
+    public void Start()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+    }
+
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        currentHealth -= damage;
 
-        if(health <= 0)
+        healthBar.SetCurrentHealth(currentHealth);
+        if (currentHealth <= 0)
         {
             Die();
         }
