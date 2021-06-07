@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
     public const string RollRight = "RollingRight";
     public const string RollLeft = "RollingLeft";
     public const string Roll = "Rolling";
+    public const string Rolling = "Keep Rolling";
     public const string Crouch = "Crouch";
     int atkStyleChange = 1;
 
@@ -111,11 +112,11 @@ public class PlayerMovement : MonoBehaviour
         Timer.text = "Timer: " + TimeCount;
 
         //====== Assign key ======
-        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && !m_rolling && m_boxCollider2D.enabled && Time.time >= AtkingTime)
+        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && !m_rolling && m_boxCollider2D.enabled)
         {
             m_buttonPress = Right;
         }
-        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !m_rolling && m_boxCollider2D.enabled && Time.time >= AtkingTime)
+        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !m_rolling && m_boxCollider2D.enabled)
         {
             m_buttonPress = Left;
         }
@@ -159,10 +160,21 @@ public class PlayerMovement : MonoBehaviour
         //===============================
         //=== 2. Movements and Atk   ====
         //===============================
-        //*** Crounching ***
+        //*** Check invincible rolling ***
+        if (!m_boxCollider2D.enabled)
+        {
+            Physics2D.IgnoreLayerCollision(3, 8, true);
+            Debug.LogError("Invincible");
+        }
+        if (m_boxCollider2D.enabled)
+        {
+            Debug.LogError("Not Invincible");
+            Physics2D.IgnoreLayerCollision(3, 8, false);
+        }
+        //*** keep Rolling ***
         if (CeilingCheck())
         {
-            m_buttonPress = Roll;
+            m_buttonPress = Rolling;
         }
         //*** Moving RIGHT ***
         if (m_buttonPress == Right)
@@ -198,6 +210,14 @@ public class PlayerMovement : MonoBehaviour
         {
             m_rolling = true;
             m_animator.SetTrigger("Roll");
+            m_rgbd2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_rgbd2d.velocity.y);
+            nextRollingTime = Time.time + rollingRate;
+            m_boxCollider2D.enabled = false;
+        }
+        else if (m_buttonPress == Rolling)
+        {
+            m_rolling = true;
+            m_animator.SetTrigger("Rolling");
             m_rgbd2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_rgbd2d.velocity.y);
             nextRollingTime = Time.time + rollingRate;
             m_boxCollider2D.enabled = false;
@@ -300,13 +320,15 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, m_circleCollider2D.bounds.extents.y), Vector2.right * (m_circleCollider2D.bounds.extents.x), rayColor);
         return raycasthit.collider != null;
     }
-
+        
     //---------------- Animation Events ---------------------
     void AE_ResetRoll()
     {
         m_rolling = false;
         m_boxCollider2D.enabled = true;
         m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
+        if (!CeilingCheck())
+            m_animator.Play("Idle");
     }
 
     void AE_IdleVelocity()

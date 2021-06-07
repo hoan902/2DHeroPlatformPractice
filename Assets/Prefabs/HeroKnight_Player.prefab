@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2045688727222765733}
   - component: {fileID: 2045688727222765732}
   - component: {fileID: 5901270563134030532}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeroKnight_Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2045688728992529768}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AtkPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

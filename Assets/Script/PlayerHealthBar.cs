@@ -24,7 +24,7 @@ public class PlayerHealthBar : MonoBehaviour
     }
     void Update()
     {
-        healthInfo = slider.value + "/" + slider.maxValue;
+        healthInfo = slider.value + " / " + slider.maxValue;
         healthCount.text = healthInfo;
     }
 }

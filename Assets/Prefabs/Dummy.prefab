@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6459033314316151019}
   - component: {fileID: 26430558419450006}
   - component: {fileID: 3235979528819104378}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4521046779426074478}
   - component: {fileID: 8373315381512993711}
   - component: {fileID: 8600461262310621057}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: PlayerHealthBar (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 3992252246965929510}
   - component: {fileID: 3992252246965929511}
   - component: {fileID: -2406369071322874576}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Dummy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 1138156252587046576}
   - component: {fileID: 6571717231767040322}
   - component: {fileID: 2884861246225274627}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 8034032870277551994}
   - component: {fileID: 3881222834200299317}
   - component: {fileID: 4409975711025741328}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: EnemyCanvasUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +564,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5548732420778797921}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2029650074938379962}
   - component: {fileID: 2874753349208053042}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -644,7 +644,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1312396679253256421}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 6292813702437068773}
   - component: {fileID: 7335082539710792991}
   - component: {fileID: 757550057409555073}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +816,7 @@ GameObject:
   - component: {fileID: 1265156118042862557}
   - component: {fileID: 7359320055254474303}
   - component: {fileID: 3843057267343790277}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -25,7 +25,7 @@ public class EnemyHealthBar : MonoBehaviour
     }
     void Update()
     {
-        healthInfo = slider.value + "/" + slider.maxValue;
+        healthInfo = slider.value + " / " + slider.maxValue;
         healthCount.text = healthInfo;
     }
 }
