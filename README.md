@@ -6,5 +6,5 @@ This game will only have 1 stage as a demo. If it have good feed back, i'll make
 Log Dev:
  - 8/6/2021
     + Adding new enemy movement controller
-    + Adding AI tracking player and behaviour for enemy
+    + Adding AI tracking player and behaviour for enemy (using A* algothrim pathfinder)
     + Enemy attacking skill and system
