@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 200
-  currentHealth: 0
+  currentHealth: 200
   healthBar: {fileID: 8600461262310621057}
   deathEffect: {fileID: 9177852276768002363, guid: f2b8cb12d058a964f9eb506e7eb72d48, type: 3}
 --- !u!50 &3992252246965929511
@@ -325,9 +325,9 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_UseAutoMass: 1
+  m_Mass: 0.7730713
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
