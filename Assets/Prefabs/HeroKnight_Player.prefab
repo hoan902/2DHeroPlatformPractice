@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 2045688727222765733}
   - component: {fileID: 2045688727222765732}
   - component: {fileID: 5901270563134030532}
+  - component: {fileID: 4287623869903402451}
+  - component: {fileID: 5934788559480117543}
   m_Layer: 3
   m_Name: HeroKnight_Player
   m_TagString: Player
@@ -128,8 +130,6 @@ MonoBehaviour:
     m_Bits: 256
   movementSpd: 3
   jumpForce: 6
-  extraHeight: 0.15
-  extraHeightCeilCheck: 0.5
   m_rollForce: 6
   rollingRate: 1
   AtkingRate: 0.35
@@ -219,6 +219,38 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 0}
   deathEffect: {fileID: 0}
+--- !u!114 &4287623869903402451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045688727222765727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcf11ed77f4ac441bddc09cedabe301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraHeight: 0.15
+  platformLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &5934788559480117543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045688727222765727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26886eb414a7504296a418983bcfe7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraHeightCeilCheck: 0.5
+  platformLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &2045688728992529769
 GameObject:
   m_ObjectHideFlags: 0

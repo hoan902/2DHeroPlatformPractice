@@ -11,20 +11,12 @@ public class PlayerMovement : MonoBehaviour
     //---------------- SerializeField zone ----------------------------
     [SerializeField]
     private LayerMask platformLayerMask;
-    
-    [SerializeField]
-    private LayerMask EnemyLayerMask;
 
     [SerializeField]
     private float movementSpd = 3f;
 
     [SerializeField]
     private float jumpForce = 25f;
-
-    [SerializeField]
-    float extraHeight = 1f;
-    [SerializeField]
-    float extraHeightCeilCheck = 1f;
 
     [SerializeField]
     float m_rollForce = 6.0f;
@@ -47,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     //---------------- Private zone ----------------------------
     float nextRollingTime = 0f;
     float AtkingTime = 0f;
+    Grounded grounded;
+    CeilingCheck ceilingCheck;
     private int m_facingDirection = 1;
     private Animator m_animator;
     private Rigidbody2D m_rgbd2d;
@@ -85,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
         m_animator = GetComponent<Animator>();
         m_spriteRenderer = GetComponent<SpriteRenderer>();
         m_transform = GetComponent<Transform>();
+        grounded = GetComponent<Grounded>();
+        ceilingCheck = GetComponent<CeilingCheck>();
     }
 
 
@@ -93,8 +89,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //--- Checking UI Rolling CD ---
-        IsGrounded();
-        CeilingCheck();
+        grounded.IsGrounded();
+        ceilingCheck.IsCeilingCheck();
         float remainingCD = nextRollingTime - Time.time;
         if (remainingCD > 0)
         {
@@ -126,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //--- jumping assign key --
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && !m_rolling && IsGrounded())
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && !m_rolling && grounded.IsGrounded())
         {
             m_boxCollider2D.enabled = true;
             m_buttonPress = Jump;
@@ -172,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
             Physics2D.IgnoreLayerCollision(3, 8, false);
         }
         //*** keep Rolling ***
-        if (CeilingCheck())
+        if (ceilingCheck.IsCeilingCheck())
         {
             m_buttonPress = Rolling;
         }
@@ -184,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
             m_transform.localScale = new Vector3(1, 1, 1);
             m_facingDirection = 1;
             m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
-            if (IsGrounded() && !m_rolling)
+            if (grounded.IsGrounded() && !m_rolling)
             {
                 m_delayToIdle = 0.05f;
                 m_animator.SetInteger("AnimState", 1);
@@ -194,12 +190,12 @@ public class PlayerMovement : MonoBehaviour
         //*** Moving LEFT ***
         else if (m_buttonPress == Left)
         {
-            //GetComponent<SpriteRenderer>().flipX = true;
+            //GetComponent<SpriteRenderer>().flipX = true; this only flipx the sprite (colider might not flip with it)
             //flip with scaleX -1
             m_transform.localScale = new Vector3(-1, 1, 1);
             m_facingDirection = -1;
             m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
-            if (IsGrounded() && !m_rolling)
+            if (grounded.IsGrounded() && !m_rolling)
             {
                 m_delayToIdle = 0.05f;
                 m_animator.SetInteger("AnimState", 1);
@@ -227,7 +223,7 @@ public class PlayerMovement : MonoBehaviour
         if (m_buttonPress == Jump)
         {
             m_animator.SetTrigger("Jump");
-            m_animator.SetBool("Grounded", IsGrounded());
+            m_animator.SetBool("Grounded", grounded.IsGrounded());
             m_rgbd2d.velocity = Vector2.up * jumpForce;
         }
 
@@ -239,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 atkStyleChange = 1;
             }
-            if (IsGrounded() && !m_rolling && m_isAtking)
+            if (grounded.IsGrounded() && !m_rolling && m_isAtking)
             {
                 m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
                 //animator.Play("PlayerAtk");
@@ -247,7 +243,7 @@ public class PlayerMovement : MonoBehaviour
                 atkStyleChange++;
                 AtkingTime = Time.time + AtkingRate;
             }
-            else if (!IsGrounded() && !m_rolling)
+            else if (!grounded.IsGrounded() && !m_rolling)
             {
                 m_animator.SetTrigger("Attack3");
                 AtkingTime = Time.time + AtkingRate;
@@ -279,55 +275,15 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+  
 
-    //============================== GROUND CHECK (PRIVATE BOOL) =========================================== 
-    private bool IsGrounded()
-    {
-        RaycastHit2D raycasthit = Physics2D.BoxCast(m_circleCollider2D.bounds.center, m_circleCollider2D.bounds.size, 0f, Vector2.down, extraHeight, platformLayerMask);
-        Color rayColor;
-        if (raycasthit.collider != null)
-        {
-            m_animator.SetBool("Grounded", true);
-            rayColor = Color.blue;
-        }
-        else
-        {
-            m_animator.SetBool("Grounded", false);
-            rayColor = Color.red;
-        }
-        Debug.DrawRay(m_circleCollider2D.bounds.center + new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.down * (m_circleCollider2D.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.down * (m_circleCollider2D.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, m_circleCollider2D.bounds.extents.y), Vector2.right * (m_circleCollider2D.bounds.extents.x), rayColor);
-        Debug.Log(raycasthit.collider);
-        return raycasthit.collider != null;
-    }
-
-    //============================== Ceiling Check (PRIVATE BOOL) =========================================== 
-    private bool CeilingCheck()
-    {
-        RaycastHit2D raycasthit = Physics2D.BoxCast(m_circleCollider2D.bounds.center, m_circleCollider2D.bounds.extents, 0f, Vector2.up, extraHeightCeilCheck, platformLayerMask);
-        Color rayColor;
-        if (raycasthit.collider != null)
-        {
-            rayColor = Color.cyan;
-        }
-        else
-        {
-            rayColor = Color.yellow;
-        }
-        Debug.DrawRay(m_circleCollider2D.bounds.center + new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.up * (m_circleCollider2D.bounds.extents.y + extraHeightCeilCheck), rayColor);
-        Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.up * (m_circleCollider2D.bounds.extents.y + extraHeightCeilCheck), rayColor);
-        Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, m_circleCollider2D.bounds.extents.y), Vector2.right * (m_circleCollider2D.bounds.extents.x), rayColor);
-        return raycasthit.collider != null;
-    }
-        
     //---------------- Animation Events ---------------------
     void AE_ResetRoll()
     {
         m_rolling = false;
         m_boxCollider2D.enabled = true;
         m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
-        if (!CeilingCheck())
+        if (!ceilingCheck.IsCeilingCheck())
             m_animator.Play("Idle");
     }
 
