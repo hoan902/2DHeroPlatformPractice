@@ -39,8 +39,10 @@ public class PlayerMovement : MonoBehaviour
     //---------------- Private zone ----------------------------
     float nextRollingTime = 0f;
     float AtkingTime = 0f;
-    Grounded grounded;
-    CeilingCheck ceilingCheck;
+
+    Grounded m_grounded;
+    CeilingCheck m_ceilingCheck;
+
     private int m_facingDirection = 1;
     private Animator m_animator;
     private Rigidbody2D m_rgbd2d;
@@ -50,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
     private Transform m_transform;
     private bool m_isAtking = false;
     private bool m_rolling = false;
-    private bool m_isCrouch = false;
     private float m_delayToIdle = 0.0f;
     private string m_buttonPress;
 
@@ -67,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
     public const string RollLeft = "RollingLeft";
     public const string Roll = "Rolling";
     public const string Rolling = "Keep Rolling";
-    public const string Crouch = "Crouch";
     int atkStyleChange = 1;
 
     // Start is called before the first frame update
@@ -79,8 +79,8 @@ public class PlayerMovement : MonoBehaviour
         m_animator = GetComponent<Animator>();
         m_spriteRenderer = GetComponent<SpriteRenderer>();
         m_transform = GetComponent<Transform>();
-        grounded = GetComponent<Grounded>();
-        ceilingCheck = GetComponent<CeilingCheck>();
+        m_grounded = GetComponent<Grounded>();
+        m_ceilingCheck = GetComponent<CeilingCheck>();
     }
 
 
@@ -89,8 +89,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //--- Checking UI Rolling CD ---
-        grounded.IsGrounded();
-        ceilingCheck.IsCeilingCheck();
+        m_grounded.IsGrounded();
+        m_ceilingCheck.IsCeilingCheck();
         float remainingCD = nextRollingTime - Time.time;
         if (remainingCD > 0)
         {
@@ -122,11 +122,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //--- jumping assign key --
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && !m_rolling && grounded.IsGrounded())
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && !m_rolling && m_grounded.IsGrounded())
         {
             m_boxCollider2D.enabled = true;
             m_buttonPress = Jump;
-            m_isCrouch = false;
         }
 
         //--- Atking assign key --
@@ -135,7 +134,6 @@ public class PlayerMovement : MonoBehaviour
             m_boxCollider2D.enabled = true;
             m_buttonPress = Atk;
             m_isAtking = true;
-            m_isCrouch = false;
         }
         else if (Input.GetKey(KeyCode.L) && !m_rolling && Time.time >= nextRollingTime)
         {
@@ -160,15 +158,13 @@ public class PlayerMovement : MonoBehaviour
         if (!m_boxCollider2D.enabled)
         {
             Physics2D.IgnoreLayerCollision(3, 8, true);
-            Debug.LogError("Invincible");
         }
         if (m_boxCollider2D.enabled)
         {
-            Debug.LogError("Not Invincible");
             Physics2D.IgnoreLayerCollision(3, 8, false);
         }
         //*** keep Rolling ***
-        if (ceilingCheck.IsCeilingCheck())
+        if (m_ceilingCheck.IsCeilingCheck())
         {
             m_buttonPress = Rolling;
         }
@@ -180,7 +176,7 @@ public class PlayerMovement : MonoBehaviour
             m_transform.localScale = new Vector3(1, 1, 1);
             m_facingDirection = 1;
             m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
-            if (grounded.IsGrounded() && !m_rolling)
+            if (m_grounded.IsGrounded() && !m_rolling)
             {
                 m_delayToIdle = 0.05f;
                 m_animator.SetInteger("AnimState", 1);
@@ -195,7 +191,7 @@ public class PlayerMovement : MonoBehaviour
             m_transform.localScale = new Vector3(-1, 1, 1);
             m_facingDirection = -1;
             m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
-            if (grounded.IsGrounded() && !m_rolling)
+            if (m_grounded.IsGrounded() && !m_rolling)
             {
                 m_delayToIdle = 0.05f;
                 m_animator.SetInteger("AnimState", 1);
@@ -223,7 +219,7 @@ public class PlayerMovement : MonoBehaviour
         if (m_buttonPress == Jump)
         {
             m_animator.SetTrigger("Jump");
-            m_animator.SetBool("Grounded", grounded.IsGrounded());
+            m_animator.SetBool("Grounded", m_grounded.IsGrounded());
             m_rgbd2d.velocity = Vector2.up * jumpForce;
         }
 
@@ -235,7 +231,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 atkStyleChange = 1;
             }
-            if (grounded.IsGrounded() && !m_rolling && m_isAtking)
+            if (m_grounded.IsGrounded() && !m_rolling && m_isAtking)
             {
                 m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
                 //animator.Play("PlayerAtk");
@@ -243,7 +239,7 @@ public class PlayerMovement : MonoBehaviour
                 atkStyleChange++;
                 AtkingTime = Time.time + AtkingRate;
             }
-            else if (!grounded.IsGrounded() && !m_rolling)
+            else if (!m_grounded.IsGrounded() && !m_rolling)
             {
                 m_animator.SetTrigger("Attack3");
                 AtkingTime = Time.time + AtkingRate;
@@ -265,10 +261,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_isAtking = false;
             }
-            if (m_isCrouch)
-            {
-                m_isCrouch = false;
-            }
             if (Time.time >= AtkingTime)
             {
                 //m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
@@ -283,7 +275,7 @@ public class PlayerMovement : MonoBehaviour
         m_rolling = false;
         m_boxCollider2D.enabled = true;
         m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
-        if (!ceilingCheck.IsCeilingCheck())
+        if (!m_ceilingCheck.IsCeilingCheck())
             m_animator.Play("Idle");
     }
 

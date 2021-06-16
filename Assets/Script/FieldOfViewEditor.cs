@@ -11,7 +11,7 @@ public class FieldOfViewEditor : Editor
         FieldOfView fow = (FieldOfView)target;
 
         //Draws view reach
-        Handles.color = Color.black;
+        Handles.color = Color.green;
         Handles.DrawWireArc(fow.transform.position, Vector3.forward, Vector3.up, 360, fow.viewRadius);
 
         //Draws cone of view

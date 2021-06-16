@@ -37,7 +37,6 @@ public class Grounded : MonoBehaviour
         Debug.DrawRay(m_circleCollider2D.bounds.center + new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.down * (m_circleCollider2D.bounds.extents.y + extraHeight), rayColor);
         Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, 0), Vector2.down * (m_circleCollider2D.bounds.extents.y + extraHeight), rayColor);
         Debug.DrawRay(m_circleCollider2D.bounds.center - new Vector3(m_circleCollider2D.bounds.extents.x, m_circleCollider2D.bounds.extents.y), Vector2.right * (m_circleCollider2D.bounds.extents.x), rayColor);
-        Debug.Log(raycasthit.collider);
         return raycasthit.collider != null;
     }
 }

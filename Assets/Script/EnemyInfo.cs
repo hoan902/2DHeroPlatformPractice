@@ -7,19 +7,24 @@ public class EnemyInfo : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public EnemyHealthBar healthBar;
-
     public GameObject deathEffect;
+
+    private Rigidbody2D m_rb2D;
+    private Animator m_animator;
 
     public void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        m_animator = GetComponent<Animator>();
+        m_rb2D = GetComponent<Rigidbody2D>();
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
+        m_animator.SetTrigger("Hurt");
+        m_rb2D.velocity = new Vector2(0, m_rb2D.velocity.y);
         healthBar.SetCurrentHealth(currentHealth);
         if (currentHealth <= 0)
         {
