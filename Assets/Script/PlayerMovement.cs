@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     private string m_buttonPress;
 
     //---------------- Public Zone ----------------------------
+    public bool m_isBlocking = false;
     public Transform attackPoint;
     public TextMeshProUGUI Timer;
     public Text RollCooldownUI;
@@ -139,6 +140,18 @@ public class PlayerMovement : MonoBehaviour
         {
             m_buttonPress = Roll;
         }
+        // Block
+        else if (Input.GetKeyDown(KeyCode.K) && !m_rolling && m_boxCollider2D.enabled)
+        {
+            m_isBlocking = true;
+            m_animator.SetTrigger("Block");
+            m_animator.SetBool("IdleBlock", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.K))
+        {
+            m_isBlocking = false;
+            m_animator.SetBool("IdleBlock", false);
+        }
     }
     void FixedUpdate()
     {
@@ -173,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //GetComponent<SpriteRenderer>().flipX = false;
             //flip with scaleX -1
-            m_transform.localScale = new Vector3(1, 1, 1);
+            transform.eulerAngles = new Vector3(0, 0, 0);
             m_facingDirection = 1;
             m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
             if (m_grounded.IsGrounded() && !m_rolling)
@@ -188,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //GetComponent<SpriteRenderer>().flipX = true; this only flipx the sprite (colider might not flip with it)
             //flip with scaleX -1
-            m_transform.localScale = new Vector3(-1, 1, 1);
+            transform.eulerAngles = new Vector3(0, -180, 0);
             m_facingDirection = -1;
             m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
             if (m_grounded.IsGrounded() && !m_rolling)
@@ -302,9 +315,5 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(Atk);
         }
-    }
-    void flip()
-    {
-            m_transform.localScale = new Vector3(-1,1,1);
     }
 }

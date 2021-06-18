@@ -11,6 +11,7 @@ public class PlayerInfo : MonoBehaviour
 
     private Rigidbody2D m_rb2D;
     private Animator m_animator;
+    private BoxCollider2D m_boxCollider2D;
 
     public void Start()
     {
@@ -18,6 +19,7 @@ public class PlayerInfo : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         m_animator = GetComponent<Animator>();
         m_rb2D = GetComponent<Rigidbody2D>();
+        m_boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     public void TakeDamage(int damage)
@@ -25,6 +27,10 @@ public class PlayerInfo : MonoBehaviour
         currentHealth -= damage;
         m_animator.SetTrigger("Hurt");
         m_rb2D.velocity = new Vector2(0, m_rb2D.velocity.y);
+        if(!m_boxCollider2D.enabled)
+        {
+            m_boxCollider2D.enabled = true;
+        }    
         healthBar.SetCurrentHealth(currentHealth);
         if (currentHealth <= 0)
         {

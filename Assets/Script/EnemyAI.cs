@@ -101,7 +101,6 @@ public class EnemyAI : MonoBehaviour
             case State.Roaming:
                 m_isAtking = false;
                 //What enemy do when roaming
-                Debug.LogWarning("Roming now");
                 transform.Translate(Vector2.right * roamingSpeed * Time.deltaTime);
                 RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, downDistance,platformLayerMask);
                 RaycastHit2D wallInfo = Physics2D.Raycast(wallDetection.position, Vector2.down, xDistance, platformLayerMask);
@@ -135,9 +134,8 @@ public class EnemyAI : MonoBehaviour
             case State.DectectPlayer:
                 //===============================================================================================
                 //===============================================================================================
-                //What enemy do when detected a player
+                //What enemy do when detected a player (not use)
                 m_isAtking = false;
-                Debug.LogWarning("Chasing player now");
 
 
                 if (m_currentWayPoint >= m_path.vectorPath.Count)

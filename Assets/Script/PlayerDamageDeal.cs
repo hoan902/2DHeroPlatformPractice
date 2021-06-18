@@ -11,7 +11,6 @@ public class PlayerDamageDeal : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDamage(damage);
-            Debug.LogWarning(Target.name);
         }
         Destroy(gameObject);
     }
