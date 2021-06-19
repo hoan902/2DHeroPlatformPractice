@@ -9,3 +9,4 @@ Basic player control:
 - W and Space: jumping
 - J and Z: attacking
 - L: rolling
+- K: Blocking
