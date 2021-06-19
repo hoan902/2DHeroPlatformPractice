@@ -14,8 +14,8 @@ public class EnemyAI : MonoBehaviour
 
     [Header("____ Public Transform ____")]
     public Transform target;
-    public Transform groundDetection;
-    public Transform wallDetection;
+    public Transform groundDetectionPoint;
+    public Transform wallDetectionPoint;
     public Transform playerDetectionStartPos;
     public Transform playerDetectionEndPos;
     public Transform AtkRangeStartPos;
@@ -50,6 +50,7 @@ public class EnemyAI : MonoBehaviour
     private int atkStyleChange = 1;
     private Animator m_animator;
     private Grounded m_grounded;
+    private PlayerInfo m_playerInfo;
     private Path m_path;
     private int m_currentWayPoint = 0;
     private bool m_reachEndOfPath = false;
@@ -67,11 +68,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private LayerMask playerLayerMask;
 
-    
+
     Seeker m_seeker;
     Rigidbody2D m_rb2D;
 
-    
+
 
     private void Awake()
     {
@@ -82,7 +83,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         m_animator = GetComponent<Animator>();
-        m_seeker = GetComponent<Seeker>();    
+        m_seeker = GetComponent<Seeker>();
         m_rb2D = GetComponent<Rigidbody2D>();
         m_grounded = GetComponent<Grounded>();
 
@@ -93,51 +94,57 @@ public class EnemyAI : MonoBehaviour
     //Update is called once per fixed second (can change in unity project setting)
     void FixedUpdate()
     {
-
         switch (state)
         {
             default:
-                // ------------- Roaming -----------------
+            // ------------- Roaming -----------------
             case State.Roaming:
                 m_isAtking = false;
                 //What enemy do when roaming
                 transform.Translate(Vector2.right * roamingSpeed * Time.deltaTime);
-                RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, downDistance,platformLayerMask);
-                RaycastHit2D wallInfo = Physics2D.Raycast(wallDetection.position, Vector2.down, xDistance, platformLayerMask);
-                RaycastHit2D playerInfo = Physics2D.Linecast(playerDetectionStartPos.position, playerDetectionEndPos.position, playerLayerMask);
+                RaycastHit2D groundDetector = Physics2D.Raycast(groundDetectionPoint.position, Vector2.down, downDistance, platformLayerMask);
+                RaycastHit2D wallDetector = Physics2D.Raycast(wallDetectionPoint.position, Vector2.down, xDistance, platformLayerMask);
+                RaycastHit2D playerDetector = Physics2D.Linecast(playerDetectionStartPos.position, playerDetectionEndPos.position, playerLayerMask);
                 Debug.DrawLine(playerDetectionStartPos.position, playerDetectionEndPos.position, Color.red);
-                if(groundInfo.collider)
+                if (groundDetector.collider)
                 {
                     m_animator.SetBool("Grounded", true);
                     m_animator.SetInteger("EnemyAnimState", 1);
                 }
-                if(!groundInfo.collider || wallInfo.collider)
+                if (!groundDetector.collider || wallDetector.collider)
                 {
                     if (m_movingRight)
                     {
                         transform.eulerAngles = new Vector3(0, -180, 0);
                         m_movingRight = false;
-                    }else
-                    {   
-                        transform.eulerAngles = new Vector3(0,0,0);
+                    }
+                    else
+                    {
+                        transform.eulerAngles = new Vector3(0, 0, 0);
                         m_movingRight = true;
                     }
                 }
-                if(playerInfo.collider)
+                if (playerDetector.collider)
                 {
-                    state = State.DectectPlayer;
+                    m_playerInfo = playerDetector.collider.gameObject.GetComponent<PlayerInfo>();
+                    if (m_playerInfo.currentHealth > 0)
+                    {
+                        state = State.DectectPlayer;
+                    }else if(m_playerInfo.currentHealth <= 0)
+                    {
+                        state = State.Roaming;
+                    }
                 }
                 break;
             //===============================================================================================
             //===============================    Detecting player    ========================================
             //===============================================================================================
             case State.DectectPlayer:
+
+
                 //===============================================================================================
-                //===============================================================================================
-                //What enemy do when detected a player (not use)
+                //What enemy do when detected a player (not using but need to keep to prevent out of range index error)
                 m_isAtking = false;
-
-
                 if (m_currentWayPoint >= m_path.vectorPath.Count)
                 {
                     //If reached to the path
@@ -149,7 +156,7 @@ public class EnemyAI : MonoBehaviour
                     //If havent reached to the path
                     m_reachEndOfPath = false;
                 }
-
+                //===============================================================================================
 
                 //if there no path
                 if (m_path == null)
@@ -219,11 +226,12 @@ public class EnemyAI : MonoBehaviour
                         atkStyleChange++;
                         AtkingTime = Time.time + AtkingRate;
                     }
-                    else if (!m_grounded.IsGrounded())
+                    //This is air atk, but enemy haven't have jump skill yet so it might not needed yet
+                    /*else if (!m_grounded.IsGrounded())
                     {
                         m_animator.SetTrigger("Atk1");
                         AtkingTime = Time.time + AtkingRate;
-                    }
+                    }*/
                 }
                 break;
                 //===============================================================================================
@@ -257,6 +265,11 @@ public class EnemyAI : MonoBehaviour
         {
             m_isAtking = true;
             state = State.AttackingPlayer;
+            m_playerInfo = playerInAtkRange.collider.gameObject.GetComponent<PlayerInfo>();
+            if (m_playerInfo.currentHealth <= 0)
+            {
+                state = State.Roaming;
+            }
         }
         else
         {
