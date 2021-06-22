@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     float rollingRate = 2f;
+    
+    [SerializeField]
+    float blockingRate = 2f;
 
     [SerializeField]
     float AtkingRate = 0.35f;
@@ -38,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     //---------------- Private zone ----------------------------
     float nextRollingTime = 0f;
+    float nextBlockingTime = 0f;
     float AtkingTime = 0f;
 
     Grounded m_grounded;
@@ -141,11 +145,12 @@ public class PlayerMovement : MonoBehaviour
             m_buttonPress = Roll;
         }
         // Block
-        else if (Input.GetKeyDown(KeyCode.K) && !m_rolling && m_boxCollider2D.enabled)
+        else if (Input.GetKeyDown(KeyCode.K) && !m_rolling && m_boxCollider2D.enabled && Time.time >= nextBlockingTime)
         {
             m_isBlocking = true;
             m_animator.SetTrigger("Block");
             m_animator.SetBool("IdleBlock", true);
+            nextBlockingTime = Time.time + blockingRate;
         }
         else if (Input.GetKeyUp(KeyCode.K))
         {
@@ -188,7 +193,14 @@ public class PlayerMovement : MonoBehaviour
             //flip with scaleX -1
             transform.eulerAngles = new Vector3(0, 0, 0);
             m_facingDirection = 1;
-            m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
+            if(m_isAtking && m_grounded.IsGrounded() || m_isBlocking && m_grounded.IsGrounded())
+            {
+                m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
+            }
+            else
+            {
+                m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
+            }
             if (m_grounded.IsGrounded() && !m_rolling)
             {
                 m_delayToIdle = 0.05f;
@@ -203,7 +215,14 @@ public class PlayerMovement : MonoBehaviour
             //flip with scaleX -1
             transform.eulerAngles = new Vector3(0, -180, 0);
             m_facingDirection = -1;
-            m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
+            if (m_isAtking && m_grounded.IsGrounded() || m_isBlocking && m_grounded.IsGrounded())
+            {
+                m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
+            }
+            else
+            {
+                m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
+            }
             if (m_grounded.IsGrounded() && !m_rolling)
             {
                 m_delayToIdle = 0.05f;
@@ -310,6 +329,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void AE_AtkDamageEnd()
     {
+        m_isAtking = false;
         GameObject[] DestroyAtk = GameObject.FindGameObjectsWithTag("Slashing");
         foreach (GameObject Atk in DestroyAtk)
         {

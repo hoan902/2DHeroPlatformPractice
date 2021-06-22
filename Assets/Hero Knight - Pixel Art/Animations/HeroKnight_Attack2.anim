@@ -88,7 +88,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.2857143
+  - time: 0.42857143
     functionName: AE_AtkDamageEnd
     data: 
     objectReferenceParameter: {fileID: 0}
