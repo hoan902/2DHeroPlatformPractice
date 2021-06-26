@@ -69,8 +69,6 @@ public class PlayerMovement : MonoBehaviour
     public const string Left = "Left";
     public const string Jump = "Jump";
     public const string Atk = "Atk";
-    public const string RollRight = "RollingRight";
-    public const string RollLeft = "RollingLeft";
     public const string Roll = "Rolling";
     public const string Rolling = "Keep Rolling";
     int atkStyleChange = 1;
@@ -113,11 +111,11 @@ public class PlayerMovement : MonoBehaviour
         Timer.text = "Timer: " + TimeCount;
 
         //====== Assign key ======
-        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && !m_rolling && m_boxCollider2D.enabled)
+        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && !m_isBlocking && !m_rolling && m_boxCollider2D.enabled)
         {
             m_buttonPress = Right;
         }
-        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !m_rolling && m_boxCollider2D.enabled)
+        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !m_isBlocking && !m_rolling && m_boxCollider2D.enabled)
         {
             m_buttonPress = Left;
         }
@@ -129,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
         //--- jumping assign key --
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && !m_rolling && m_grounded.IsGrounded())
         {
+            m_isBlocking = false;
             m_boxCollider2D.enabled = true;
             m_buttonPress = Jump;
         }
@@ -136,12 +135,14 @@ public class PlayerMovement : MonoBehaviour
         //--- Atking assign key --
         if ((Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.Z)) && Time.time >= AtkingTime && !m_rolling)
         {
+            m_isBlocking = false;
             m_boxCollider2D.enabled = true;
             m_buttonPress = Atk;
             m_isAtking = true;
         }
         else if (Input.GetKey(KeyCode.L) && !m_rolling && Time.time >= nextRollingTime)
         {
+            m_isBlocking = false;
             m_buttonPress = Roll;
         }
         // Block
@@ -173,11 +174,11 @@ public class PlayerMovement : MonoBehaviour
         //=== 2. Movements and Atk   ====
         //===============================
         //*** Check invincible rolling ***
-        if (!m_boxCollider2D.enabled)
+        if (!m_boxCollider2D.enabled && m_rolling)
         {
             Physics2D.IgnoreLayerCollision(3, 8, true);
         }
-        if (m_boxCollider2D.enabled)
+        if (m_boxCollider2D.enabled && !m_rolling)
         {
             Physics2D.IgnoreLayerCollision(3, 8, false);
         }

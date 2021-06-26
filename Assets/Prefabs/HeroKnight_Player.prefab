@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5043366711185428141}
   - component: {fileID: 3219048105655534721}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,8 +24,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050979926064099558}
-  m_LocalRotation: {x: -0, y: -0, z: -0.84407884, w: 0.5362191}
-  m_LocalPosition: {x: -1.47, y: 2.65, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7878536, w: 0.61586267}
+  m_LocalPosition: {x: -0.05, y: 0.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2045688727222765728}
@@ -45,23 +45,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FalloffIntensity: 0.879
+  m_Color: {r: 0.75686276, g: 0.9115629, b: 1, a: 1}
   m_Intensity: 1
-  m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 00000000
+  m_LightVolumeOpacity: 0.032
+  m_ApplyToSortingLayers: d1c4604b
   m_LightCookieSprite: {fileID: 0}
-  m_UseNormalMap: 0
+  m_UseNormalMap: 1
   m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
+  m_AlphaBlendOnOverlap: 1
   m_ShadowIntensity: 0
   m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 14.848736
-  m_PointLightDistance: 3
-  m_PointLightQuality: 1
+  m_PointLightInnerRadius: 0.88
+  m_PointLightOuterRadius: 4.08
+  m_PointLightDistance: 1.09
+  m_PointLightQuality: 0
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -132,7 +132,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: e7e6fe3281ff3b74fa2d068d8771b8d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,10 +150,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1264633041
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
+  m_Sprite: {fileID: 21300008, guid: ae297123f091bbf4e8f1835eb98fb293, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -202,10 +202,12 @@ MonoBehaviour:
   jumpForce: 6
   m_rollForce: 6
   rollingRate: 1
+  blockingRate: 0.6
   AtkingRate: 0.35
   m_Atk1: {fileID: 7681969462407470808, guid: 1d74085fbbd4ee64e849ebadb5de44d4, type: 3}
   m_Atk2: {fileID: 5728567209474272219, guid: db85c01975fccdc41aada5f2b5655739, type: 3}
   m_Atk3: {fileID: 532024564598005460, guid: 7a3cd76364ada7244982e15222f1c775, type: 3}
+  m_isBlocking: 0
   attackPoint: {fileID: 2045688727222765728}
   Timer: {fileID: 0}
   RollCooldownUI: {fileID: 0}
@@ -223,7 +225,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.3
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 9c497a4ce1f356b448c0dd3eca091d35, type: 2}
@@ -285,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00367f0390a14bf4ea39d9a7cfc5c4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 300
+  maxHealth: 1000
   currentHealth: 0
   healthBar: {fileID: 0}
 --- !u!114 &4287623869903402451

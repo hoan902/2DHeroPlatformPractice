@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3942437617276875573}
   m_Layer: 8
-  m_Name: PlayerDetectPoint
+  m_Name: PlayerDetectStartPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3211728542894120603}
   - component: {fileID: 1467140363227280949}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Freeform Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0.15016605, b: 0, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0.146
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: d1c4604b
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -156,7 +156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4096374571750451885}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.322, y: -0.025, z: 0}
+  m_LocalPosition: {x: 0.326, y: 0.262, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8715469718934881613}
@@ -216,7 +216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6564051772078309444}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.168, y: 0.033, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8715469718934881613}
@@ -668,7 +668,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: 992948601
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &8715469718108700229
@@ -940,11 +940,11 @@ GameObject:
   - component: {fileID: 8715469718934881612}
   - component: {fileID: 8715469718934881615}
   - component: {fileID: 8715469718934881603}
-  - component: {fileID: 8715469718934881602}
   - component: {fileID: 8715469718934881600}
+  - component: {fileID: 4116972952627213505}
+  - component: {fileID: 8715469718934881602}
   - component: {fileID: 8715469718934881607}
   - component: {fileID: 8715469718934881601}
-  - component: {fileID: 4116972952627213505}
   - component: {fileID: 3776192537869413768}
   m_Layer: 8
   m_Name: Skeleton
@@ -1013,8 +1013,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1264633041
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 4723107735738678597, guid: 1018b0ba13578bf459bd254ae1a2be99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1057,8 +1057,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 0.57945013
+  m_UseAutoMass: 0
+  m_Mass: 900
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -1067,22 +1067,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &8715469718934881602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8715469718934881614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfee7acd4efbff04a959d5dc0b831590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 200
-  currentHealth: 200
-  healthBar: {fileID: 8715469718641829405}
-  deathEffect: {fileID: 9177852276768002363, guid: f2b8cb12d058a964f9eb506e7eb72d48, type: 3}
 --- !u!60 &8715469718934881600
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1093,7 +1077,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1157,6 +1141,38 @@ PolygonCollider2D:
       - {x: 0.009272739, y: -0.10709086}
       - {x: 0.10182704, y: -0.09957673}
       - {x: 0.083761655, y: -0.27247676}
+--- !u!58 &4116972952627213505
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715469718934881614}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.03965945, y: -0.17551275}
+  serializedVersion: 2
+  m_Radius: 0.09302211
+--- !u!114 &8715469718934881602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715469718934881614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfee7acd4efbff04a959d5dc0b831590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
+  currentHealth: 200
+  healthBar: {fileID: 8715469718641829405}
+  deathEffect: {fileID: 96925128418647070, guid: 33a6880047fb02c4697b3a7b34977414, type: 3}
 --- !u!114 &8715469718934881607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,47 +1214,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  groundDetection: {fileID: 0}
-  wallDetection: {fileID: 0}
-  playerDetectionStartPos: {fileID: 0}
-  playerDetectionEndPos: {fileID: 0}
-  AtkRangeStartPos: {fileID: 0}
-  AtkRangeEndPos: {fileID: 0}
-  attackPoint: {fileID: 0}
-  speed: 500
+  groundDetectionPoint: {fileID: 6860817713734140955}
+  wallDetectionPoint: {fileID: 8649441489750822651}
+  playerDetectionStartPos: {fileID: 3942437617276875573}
+  playerDetectionEndPos: {fileID: 4028988008462749952}
+  AtkRangeStartPos: {fileID: 2726026412605758677}
+  AtkRangeEndPos: {fileID: 5333573914389512334}
+  attackPoint: {fileID: 7161251341612897228}
+  speed: 150
   roamingSpeed: 2
-  AtkingRate: 0.35
-  m_Atk1: {fileID: 0}
-  m_Atk2: {fileID: 0}
-  downDistance: 0
-  xDistance: 0
+  AtkingRate: 0.7
+  m_Atk1: {fileID: 505297182620882260, guid: c2ce903f3da158f41994f3f8bef8c003, type: 3}
+  m_Atk2: {fileID: 7174511749252499046, guid: 2e63fcef12faa3b40a2b26b0ffafe3d0, type: 3}
+  downDistance: 1
+  xDistance: 1.12
   viewDistance: 0
-  nextWayPointDistance: 3
+  nextWayPointDistance: 1
   radiusDistance: 0
-  m_radius: 0
+  m_radius: 4
   state: 0
   platformLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 0
---- !u!58 &4116972952627213505
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8715469718934881614}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.03965945, y: -0.17551275}
-  serializedVersion: 2
-  m_Radius: 0.09302211
+    m_Bits: 8
 --- !u!114 &3776192537869413768
 MonoBehaviour:
   m_ObjectHideFlags: 0

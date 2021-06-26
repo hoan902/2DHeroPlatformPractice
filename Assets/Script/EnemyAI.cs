@@ -192,7 +192,6 @@ public class EnemyAI : MonoBehaviour
                     m_animator.SetBool("Grounded", true);
                     //GetComponent<SpriteRenderer>().flipX = false;
                     transform.eulerAngles = new Vector3(0, 0, 0);
-                    Debug.Log(GetComponentInChildren<RectTransform>().eulerAngles);
                     GetComponentInChildren<RectTransform>().eulerAngles = new Vector3(0, 0, 0);
                 }
                 else if (m_rb2D.velocity.x <= -0.01f)
@@ -201,7 +200,6 @@ public class EnemyAI : MonoBehaviour
                     m_animator.SetInteger("EnemyAnimState", 1);
                     //GetComponent<SpriteRenderer>().flipX = true;
                     transform.eulerAngles = new Vector3(0, -180, 0);
-                    Debug.Log(GetComponentInChildren<RectTransform>().eulerAngles);
                     GetComponentInChildren<RectTransform>().eulerAngles = new Vector3(0, 0, 0);
                 }
                 break;
