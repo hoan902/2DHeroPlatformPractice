@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: f7fb89b82e205ea4ba8a88cee4d3070b
+guid: 1018b0ba13578bf459bd254ae1a2be99
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7500690451134026123
-    second: Take Hit_0
+      213: 4723107735738678597
+    second: Idle_0
   - first:
-      213: -889859373511162655
-    second: Take Hit_1
+      213: -7385789195546760866
+    second: Idle_1
   - first:
-      213: -3088938797480143695
-    second: Take Hit_2
+      213: 3234629978573100161
+    second: Idle_2
   - first:
-      213: -9206091644520726168
-    second: Take Hit_3
+      213: 6373048116405451881
+    second: Idle_3
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
@@ -35,6 +35,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -66,9 +67,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -134,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Take Hit_0
+      name: Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -148,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 907caeaa72bb63b4889cbdea322b1806
-      internalID: -7500690451134026123
+      spriteID: 802b177a59371084e8e2057c30969394
+      internalID: 4723107735738678597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit_1
+      name: Idle_1
       rect:
         serializedVersion: 2
         x: 150
@@ -169,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3521b474b4771d248bafd64b5e250ddc
-      internalID: -889859373511162655
+      spriteID: 871540e7a5a9c664c9063eecbfeeec83
+      internalID: -7385789195546760866
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit_2
+      name: Idle_2
       rect:
         serializedVersion: 2
         x: 300
@@ -190,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ddcad1e14386394caa85bbbfe25f5c7
-      internalID: -3088938797480143695
+      spriteID: d02fbdcc14a2ef04c828db3d2813a8a5
+      internalID: 3234629978573100161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit_3
+      name: Idle_3
       rect:
         serializedVersion: 2
         x: 450
@@ -211,8 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4105aa489403ac6428c0ada73042563f
-      internalID: -9206091644520726168
+      spriteID: fc0b2926828522c4fba31bf182b5a6ae
+      internalID: 6373048116405451881
       vertices: []
       indices: 
       edges: []

@@ -89,6 +89,7 @@ public class EnemyAI : MonoBehaviour
 
         InvokeRepeating("UpdatePath", 0f, .5f);
         m_seeker.StartPath(m_rb2D.position, target.position, OnPathComplete);
+        Physics2D.IgnoreLayerCollision(8, 8, true);
     }
 
     //Update is called once per fixed second (can change in unity project setting)
@@ -105,6 +106,7 @@ public class EnemyAI : MonoBehaviour
                 RaycastHit2D groundDetector = Physics2D.Raycast(groundDetectionPoint.position, Vector2.down, downDistance, platformLayerMask);
                 RaycastHit2D wallDetector = Physics2D.Raycast(wallDetectionPoint.position, Vector2.down, xDistance, platformLayerMask);
                 RaycastHit2D playerDetector = Physics2D.Linecast(playerDetectionStartPos.position, playerDetectionEndPos.position, playerLayerMask);
+                RaycastHit2D playerDetectorWall = Physics2D.Linecast(playerDetectionStartPos.position, playerDetectionEndPos.position, platformLayerMask);
                 Debug.DrawLine(playerDetectionStartPos.position, playerDetectionEndPos.position, Color.red);
                 if (groundDetector.collider)
                 {
@@ -126,13 +128,21 @@ public class EnemyAI : MonoBehaviour
                 }
                 if (playerDetector.collider)
                 {
-                    m_playerInfo = playerDetector.collider.gameObject.GetComponent<PlayerInfo>();
-                    if (m_playerInfo.currentHealth > 0)
-                    {
-                        state = State.DectectPlayer;
-                    }else if(m_playerInfo.currentHealth <= 0)
+                    if(playerDetectorWall.collider)
                     {
                         state = State.Roaming;
+                    }
+                    else
+                    {
+                        m_playerInfo = playerDetector.collider.gameObject.GetComponent<PlayerInfo>();
+                        if (m_playerInfo.currentHealth > 0)
+                        {
+                            state = State.DectectPlayer;
+                        }
+                        else if (m_playerInfo.currentHealth <= 0)
+                        {
+                            state = State.Roaming;
+                        }
                     }
                 }
                 break;

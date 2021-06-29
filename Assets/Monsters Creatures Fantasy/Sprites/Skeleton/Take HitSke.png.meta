@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: c5b15ca3a0987ac46b73e4a04e12eeb2
+guid: f7fb89b82e205ea4ba8a88cee4d3070b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4035959289877228764
-    second: Walk_0
+      213: -7500690451134026123
+    second: Take Hit_0
   - first:
-      213: -982904232830982447
-    second: Walk_1
+      213: -889859373511162655
+    second: Take Hit_1
   - first:
-      213: -350908408369970039
-    second: Walk_2
+      213: -3088938797480143695
+    second: Take Hit_2
   - first:
-      213: -5409570386352685021
-    second: Walk_3
+      213: -9206091644520726168
+    second: Take Hit_3
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
@@ -35,6 +35,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -66,9 +67,13 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -134,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk_0
+      name: Take Hit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -148,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f9a3876a99df914da548f46e60ad6a3
-      internalID: 4035959289877228764
+      spriteID: 907caeaa72bb63b4889cbdea322b1806
+      internalID: -7500690451134026123
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_1
+      name: Take Hit_1
       rect:
         serializedVersion: 2
         x: 150
@@ -169,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30bb9e9e4df42a74fb21bd99d94251b0
-      internalID: -982904232830982447
+      spriteID: 3521b474b4771d248bafd64b5e250ddc
+      internalID: -889859373511162655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_2
+      name: Take Hit_2
       rect:
         serializedVersion: 2
         x: 300
@@ -190,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87869644d0d29074f9c24a61300d4dee
-      internalID: -350908408369970039
+      spriteID: 3ddcad1e14386394caa85bbbfe25f5c7
+      internalID: -3088938797480143695
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_3
+      name: Take Hit_3
       rect:
         serializedVersion: 2
         x: 450
@@ -211,8 +216,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9b8e1e91c1e8bd488a7ee1cd7af5230
-      internalID: -5409570386352685021
+      spriteID: 4105aa489403ac6428c0ada73042563f
+      internalID: -9206091644520726168
       vertices: []
       indices: 
       edges: []
