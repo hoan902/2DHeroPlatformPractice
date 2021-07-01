@@ -53,7 +53,6 @@ public class EnemyAI : MonoBehaviour
     private PlayerInfo m_playerInfo;
     private Path m_path;
     private int m_currentWayPoint = 0;
-    private bool m_reachEndOfPath = false;
     private bool m_movingRight = true;
     private bool m_isAtking = false;
     private float AtkingTime = 0f;
@@ -157,14 +156,7 @@ public class EnemyAI : MonoBehaviour
                 m_isAtking = false;
                 if (m_currentWayPoint >= m_path.vectorPath.Count)
                 {
-                    //If reached to the path
-                    m_reachEndOfPath = true;
                     return;
-                }
-                else
-                {
-                    //If havent reached to the path
-                    m_reachEndOfPath = false;
                 }
                 //===============================================================================================
 

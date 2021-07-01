@@ -12,7 +12,6 @@ public class PlayerInfo : MonoBehaviour
     private Rigidbody2D m_rb2D;
     private Animator m_animator;
     private BoxCollider2D m_boxCollider2D;
-    private PlayerMovement m_playerMovement;
 
     public void Start()
     {
@@ -21,7 +20,6 @@ public class PlayerInfo : MonoBehaviour
         m_animator = GetComponent<Animator>();
         m_rb2D = GetComponent<Rigidbody2D>();
         m_boxCollider2D = GetComponent<BoxCollider2D>();
-        m_playerMovement = GetComponent<PlayerMovement>();
     }
 
     public void TakeDamage(int damage)
@@ -44,8 +42,8 @@ public class PlayerInfo : MonoBehaviour
     void Die()
     {
         m_animator.SetTrigger("Death");
-        m_playerMovement.GetComponent<Rigidbody2D>().simulated = false;
-        m_playerMovement.enabled = false;
+        PlayerMovement.Instance.GetComponent<Rigidbody2D>().simulated = false;
+        PlayerMovement.Instance.enabled = false;
         enabled = false;
         //Instantiate(deathEffect, transform.position, Quaternion.identity);
         //Destroy(gameObject);

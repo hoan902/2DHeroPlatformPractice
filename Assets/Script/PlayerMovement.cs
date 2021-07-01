@@ -60,8 +60,8 @@ public class PlayerMovement : MonoBehaviour
     private string m_buttonPress;
 
     //---------------- Public Zone ----------------------------
-    public bool m_isBlocking = false;
     public Transform attackPoint;
+    public bool m_isBlocking = false;
     public TextMeshProUGUI Timer;
     public Text RollCooldownUI;
     public Image RollCooldownUIIcon;
@@ -72,6 +72,23 @@ public class PlayerMovement : MonoBehaviour
     public const string Roll = "Rolling";
     public const string Rolling = "Keep Rolling";
     int atkStyleChange = 1;
+
+    //--------------------------------- Singleton Pattern ---------------------------
+    public static PlayerMovement Instance { get; private set; }
+    private void Awake()
+    {
+        if(Instance != null)
+        {
+            //already have unique instance in this class? destroy this one
+            Destroy(gameObject);
+        }
+        else
+        {
+            //no unique instance? create new one and prevent it from destroy on load in new scene
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
