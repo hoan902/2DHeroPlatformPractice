@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -51,7 +50,6 @@ public class EnemyAI : MonoBehaviour
     private Animator m_animator;
     private Grounded m_grounded;
     private PlayerInfo m_playerInfo;
-    private Path m_path;
     private int m_currentWayPoint = 0;
     private bool m_movingRight = true;
     private bool m_isAtking = false;
@@ -66,9 +64,7 @@ public class EnemyAI : MonoBehaviour
     private LayerMask platformLayerMask;
     [SerializeField]
     private LayerMask playerLayerMask;
-
-
-    Seeker m_seeker;
+    
     Rigidbody2D m_rb2D;
 
 
@@ -82,12 +78,10 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         m_animator = GetComponent<Animator>();
-        m_seeker = GetComponent<Seeker>();
         m_rb2D = GetComponent<Rigidbody2D>();
         m_grounded = GetComponent<Grounded>();
 
         InvokeRepeating("UpdatePath", 0f, .5f);
-        m_seeker.StartPath(m_rb2D.position, target.position, OnPathComplete);
         Physics2D.IgnoreLayerCollision(8, 8, true);
     }
 
@@ -154,14 +148,14 @@ public class EnemyAI : MonoBehaviour
                 //===============================================================================================
                 //What enemy do when detected a player (not using but need to keep to prevent out of range index error)
                 m_isAtking = false;
-                if (m_currentWayPoint >= m_path.vectorPath.Count)
+                /*if (m_currentWayPoint >= m_path.vectorPath.Count)
                 {
                     return;
-                }
+                }*/
                 //===============================================================================================
 
                 //if there no path
-                if (m_path == null)
+                /*if (m_path == null)
                     return;
 
                 //If player in enemy atk range
@@ -203,7 +197,7 @@ public class EnemyAI : MonoBehaviour
                     //GetComponent<SpriteRenderer>().flipX = true;
                     transform.eulerAngles = new Vector3(0, -180, 0);
                     GetComponentInChildren<RectTransform>().eulerAngles = new Vector3(0, 0, 0);
-                }
+                }*/
                 break;
             //===============================================================================================
             //===============================================================================================
@@ -246,20 +240,20 @@ public class EnemyAI : MonoBehaviour
 
     void UpdatePath()
     {
-        if (m_seeker.IsDone())
+        /*if (m_seeker.IsDone())
         {
             m_seeker.StartPath(m_rb2D.position, target.position, OnPathComplete);
-        }
+        }*/
     }
 
-    void OnPathComplete(Path p)
+    /*void OnPathComplete(Path p)
     {
         if (!p.error)
         {
             m_path = p;
             m_currentWayPoint = 0;
         }
-    }
+    }*/
 
 
     void PlayerInAtkRange()

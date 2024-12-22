@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ede1de99-ff10-40b7-804e-39dbfb3793a1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/AstarPathfindingProject.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/AstarPathfindingProject.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Behaviors.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Behaviors/AIDestinationSetter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Behaviors/AIDestinationSetter.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Behaviors/Patrol.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Behaviors/Patrol.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/CHANGELOG.md.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/AIBase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/AIBase.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/AILerp.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/AILerp.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/AIPath.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/AIPath.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/IAstarAI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/IAstarAI.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/NavmeshController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/NavmeshController.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/Seeker.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/Seeker.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/TurnBasedAI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AI/TurnBasedAI.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AstarData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AstarData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AstarMath.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AstarMath.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AstarPath.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/AstarPath.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/GraphUpdateScene.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/GraphUpdateScene.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/GraphUpdateShape.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/GraphUpdateShape.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/AnimationLink.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/AnimationLink.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/ArrayPool.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/ArrayPool.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/AstarDebugger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/AstarDebugger.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/BinaryHeap.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/BinaryHeap.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/Draw.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/Draw.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/EditorResourceHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/EditorResourceHelper.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/GraphEditorBase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/GraphEditorBase.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/GraphModifier.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/GraphModifier.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/GraphUpdateProcessor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/GraphUpdateProcessor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/GraphUtilities.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/GraphUtilities.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/HierarchicalGraph.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/HierarchicalGraph.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/Int3.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/Int3.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/ListPool.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/ListPool.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/MovementUtilities.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/MovementUtilities.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/NodeLink.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/NodeLink.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/NodeLink2.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/NodeLink2.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/NodeLink3.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/NodeLink3.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/ObjectPool.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/ObjectPool.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/PathInterpolator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/PathInterpolator.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/PathPool.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/PathPool.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/PathProcessor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/PathProcessor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/PathReturnQueue.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/PathReturnQueue.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/StackPool.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/StackPool.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/ThreadControlQueue.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/ThreadControlQueue.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/WindowsStoreCompatibility.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/WindowsStoreCompatibility.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/WorkItemProcessor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Misc/WorkItemProcessor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Nodes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Nodes/GraphNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Nodes/GraphNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Path.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Path.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/PathHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/PathHandler.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Serialization.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Serialization/JsonConverters.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Serialization/JsonConverters.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Serialization/JsonSerializer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Serialization/JsonSerializer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Serialization/SimpleJsonReplacement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Serialization/SimpleJsonReplacement.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Serialization/SimpleZipReplacement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Serialization/SimpleZipReplacement.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Serialization/TinyJson.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/Serialization/TinyJson.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/astarclasses.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Core/astarclasses.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Documentation.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Documentation/documentation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Documentation/documentation.html.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Documentation/documentation.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Documentation/documentation.pdf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Documentation/index.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Documentation/index.md.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AIBaseEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AIBaseEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AILerpEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AILerpEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AnimationLinkEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AnimationLinkEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AstarPathEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AstarPathEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AstarPathfindingProjectEditor.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AstarPathfindingProjectEditor.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AstarUpdateChecker.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AstarUpdateChecker.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AstarUpdateWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/AstarUpdateWindow.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/CustomGraphEditorAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/CustomGraphEditorAttribute.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/AstarEditorSkinDark.guiskin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/AstarEditorSkinDark.guiskin.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/AstarEditorSkinLight.guiskin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/AstarEditorSkinLight.guiskin.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/colorInterpolationBox.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/colorInterpolationBox.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/deleteButton@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/deleteButton@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/deleteButton@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/deleteButton@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/deleteButton_active@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/deleteButton_active@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/deleteButton_active@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/deleteButton_active@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/editButton@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/editButton@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/editButton@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/editButton@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/editButton_active@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/editButton_active@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/editButton_active@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/editButton_active@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/gizmoButton_off@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/gizmoButton_off@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/gizmoButton_off@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/gizmoButton_off@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/gizmoButton_on@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/gizmoButton_on@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/gizmoButton_on@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/gizmoButton_on@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/gridPivotSelect.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/gridPivotSelect.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/headerBackground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/headerBackground.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/hex_diameter@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/hex_diameter@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/hex_diameter@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/hex_diameter@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/hex_width@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/hex_width@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/hex_width@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/hex_width@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/images.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/images/gridPivotSelect-03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/images/gridPivotSelect-03.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/images/gridPivotSelect.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/images/gridPivotSelect.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/images/gridPivotSelect_Normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/images/gridPivotSelect_Normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/images/gridPivotSelect_On.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/images/gridPivotSelect_On.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/infoButton@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/infoButton@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/infoButton@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/infoButton@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/infoButton_active@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/infoButton_active@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/infoButton_active@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/infoButton_active@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/lock_closed@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/lock_closed@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/lock_closed@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/lock_closed@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/lock_open@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/lock_open@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/lock_open@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/lock_open@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/pixelBox2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/pixelBox2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/pixelBox3@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/pixelBox3@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/pixelBox3@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/pixelBox3@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/pixelBox3_separator.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/DarkSkin/pixelBox3_separator.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/colorInterpolationBox.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/colorInterpolationBox.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/deleteButton@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/deleteButton@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/deleteButton@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/deleteButton@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/deleteButton_active@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/deleteButton_active@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/deleteButton_active@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/deleteButton_active@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/editButton@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/editButton@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/editButton@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/editButton@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/editButton_active@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/editButton_active@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/editButton_active@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/editButton_active@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/gizmoButton_off@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/gizmoButton_off@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/gizmoButton_off@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/gizmoButton_off@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/gizmoButton_on@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/gizmoButton_on@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/gizmoButton_on@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/gizmoButton_on@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/headerBackground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/headerBackground.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/hex_diameter@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/hex_diameter@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/hex_diameter@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/hex_diameter@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/hex_width@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/hex_width@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/hex_width@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/hex_width@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/infoButton@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/infoButton@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/infoButton@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/infoButton@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/infoButton_active@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/infoButton_active@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/infoButton_active@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/infoButton_active@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/lock_closed@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/lock_closed@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/lock_closed@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/lock_closed@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/lock_open@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/lock_open@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/lock_open@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/lock_open@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/pixelBox3@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/pixelBox3@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/pixelBox3@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/pixelBox3@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/reset_normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/reset_normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/reset_on.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/LightSkin/reset_on.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/Materials/Navmesh.cginc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/Materials/Navmesh.cginc.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/Materials/Navmesh.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/Materials/Navmesh.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/Materials/Navmesh.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/Materials/Navmesh.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/Materials/NavmeshOutline.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/Materials/NavmeshOutline.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/Materials/NavmeshOutline.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/Materials/NavmeshOutline.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/Materials/line_falloff_1px.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/Materials/line_falloff_1px.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/grid.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/grid.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/ArrowDown.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/ArrowDown.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/ArrowDown_on.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/ArrowDown_on.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/ArrowUp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/ArrowUp.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/ArrowUp_on.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/ArrowUp_on.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/gridPivotSelect.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/gridPivotSelect.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/gridPivotSelect_Normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/gridPivotSelect_Normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/gridPivotSelect_On.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/gridPivotSelect_On.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/upDownArrow_01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/upDownArrow_01.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/upDownArrow_02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/upDownArrow_02.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/upDownButtons_01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/upDownButtons_01.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/upDownButtons_02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/images/upDownButtons_02.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/linkButton_active.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/linkButton_active.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/linkButton_normal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/linkButton_normal.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/pixelBox.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/pixelBox.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/pixelBox2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/pixelBox2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/pixelBox3_separator.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/pixelBox3_separator.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/scene_box@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/scene_box@1x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/scene_box@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/scene_box@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/tooltips.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/EditorAssets/tooltips.tsv.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/GraphEditors.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/GraphEditors/GraphEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/GraphEditors/GraphEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/GraphEditors/GridGeneratorEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/GraphEditors/GridGeneratorEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/GraphEditors/NavMeshGeneratorEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/GraphEditors/NavMeshGeneratorEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/GraphEditors/PointGeneratorEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/GraphEditors/PointGeneratorEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/GraphUpdateSceneEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/GraphUpdateSceneEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/Legacy.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/Legacy/LegacyAIPathEditor2.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/Legacy/LegacyAIPathEditor2.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/Legacy/LegacyEditorHelper2.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/Legacy/LegacyEditorHelper2.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/ModifierEditors.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/ModifierEditors/RaycastModifierEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/ModifierEditors/RaycastModifierEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/ModifierEditors/SmoothModifierEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/ModifierEditors/SmoothModifierEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/SeekerEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Editor/SeekerEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/Procedural.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/Procedural.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralGridMover.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralGridMover.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralGround.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralGround.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralPrefab1.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralPrefab1.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralPrefab2.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralPrefab2.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralPrefab3.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralPrefab3.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralPrefab4.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralPrefab4.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralWorld.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/ProceduralWorld.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/TopDownOverlay.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/TopDownOverlay.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/cylinder.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example12_Procedural/cylinder.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example15_2D.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example15_2D/2D.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example15_2D/2D.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example2_Terrain.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example2_Terrain/Example2.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example2_Terrain/Example2.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example2_Terrain/Pathfinding_Terrain.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example2_Terrain/Pathfinding_Terrain.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example2_Terrain/checkerGround.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example2_Terrain/checkerGround.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example2_Terrain/dynamicObstacle.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example2_Terrain/dynamicObstacle.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example5_PointGraph.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example5_PointGraph/ListCubes.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example5_PointGraph/ListCubes.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example5_PointGraph/PointGraphExample.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example5_PointGraph/PointGraphExample.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example5_PointGraph/blackText.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example5_PointGraph/blackText.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example5_PointGraph/ex5Ground.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example5_PointGraph/ex5Ground.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example5_PointGraph/ground.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example5_PointGraph/ground.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example6_Navmesh.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example6_Navmesh/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example6_Navmesh/Materials/navmesh-navmesh_example6navmeshMat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example6_Navmesh/Materials/navmesh-navmesh_example6navmeshMat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example6_Navmesh/NavmeshExample.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example6_Navmesh/NavmeshExample.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example6_Navmesh/example6.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example6_Navmesh/example6.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example6_Navmesh/navmesh.obj.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example9_Penalties.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example9_Penalties/PenaltiesExample.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Example9_Penalties/PenaltiesExample.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/AstarSmoothFollow2.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/AstarSmoothFollow2.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/DoorController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/DoorController.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/DynamicGridObstacle.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/DynamicGridObstacle.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/MineBotAI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/MineBotAI.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/MineBotAnimation.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/MineBotAnimation.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/ObjectPlacer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/ObjectPlacer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/TargetMover.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/ExampleScripts/TargetMover.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/AI.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/AI.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/BlueBox.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/BlueBox.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/BlueCheckerGround.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/BlueCheckerGround.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/BlueGround.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/BlueGround.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/DiffuseAlwaysVisible.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/DiffuseAlwaysVisible.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Door.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Door.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Ground.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Ground.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/GroundRTS.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/GroundRTS.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/OrangeGround.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/OrangeGround.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/PathBlueArea.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/PathBlueArea.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/PathGreyCube.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/PathGreyCube.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/PathRedArea.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/PathRedArea.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Projector Light.shader" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Projector Light.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/SomeBox.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/SomeBox.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Textures.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Textures/Falloff-Reflected.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Textures/Falloff-Reflected.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Textures/Falloff.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Textures/Falloff.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Textures/Shadow.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Textures/Shadow.psd.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Wall.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Materials/Wall.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/DynamicObstacle.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/DynamicObstacle.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/Minebot.tif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/Minebot.tif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/Minebot_NRM.tif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/Minebot_NRM.tif.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot-01 - Default.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot-01 - Default.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot-minebot.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot-minebot.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot@awake-01 - Default.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot@awake-01 - Default.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot@back-01 - Default.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot@back-01 - Default.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot@forward 1-01 - Default.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot@forward 1-01 - Default.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot@forward-01 - Default.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot@forward-01 - Default.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot@left-01 - Default.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot@left-01 - Default.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot@right-01 - Default.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/Materials/mine_bot@right-01 - Default.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/idle.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/idle.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot.FBX" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot.FBX.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot@awake.FBX" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot@awake.FBX.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot@back.FBX" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot@back.FBX.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot@forward.FBX" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot@forward.FBX.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot@left.FBX" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot@left.FBX.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot@right.FBX" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot@right.FBX.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/SomeBox.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/SomeBox.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/TargetReachedEffect.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/Prefabs/TargetReachedEffect.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/_Example Scenes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/ExampleScenes/_Example Scenes.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Base.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Base.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/GridGenerator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/GridGenerator.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/NavMeshGenerator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/NavMeshGenerator.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/NavmeshBase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/NavmeshBase.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/NodeClasses.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/NodeClasses/GridNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/NodeClasses/GridNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/NodeClasses/GridNodeBase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/NodeClasses/GridNodeBase.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/NodeClasses/PointNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/NodeClasses/PointNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/NodeClasses/TriangleMeshNode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/NodeClasses/TriangleMeshNode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/PointGenerator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/PointGenerator.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/QuadtreeGraph.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/QuadtreeGraph.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/BBTree.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/BBTree.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/EuclideanEmbedding.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/EuclideanEmbedding.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/GraphTransform.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/GraphTransform.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/GridLookup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/GridLookup.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/NavMeshRenderer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/NavMeshRenderer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/NavmeshTile.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/NavmeshTile.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/ObjImporter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/ObjImporter.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/PointKDTree.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Generators/Utilities/PointKDTree.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy/Editor/LegacyAIPathEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy/Editor/LegacyAIPathEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy/Editor/LegacyEditorHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy/Editor/LegacyEditorHelper.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy/Editor/LegacyRVOControllerEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy/Editor/LegacyRVOControllerEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy/Editor/LegacyRichAIEditor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy/Editor/LegacyRichAIEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy/LegacyAIPath.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy/LegacyAIPath.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy/MiscLegacy.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Legacy/MiscLegacy.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Modifiers.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Modifiers/AlternativePath.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Modifiers/AlternativePath.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Modifiers/FunnelModifier.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Modifiers/FunnelModifier.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Modifiers/Modifiers.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Modifiers/Modifiers.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Modifiers/RaycastModifier.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Modifiers/RaycastModifier.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Modifiers/SimpleSmoothModifier.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Modifiers/SimpleSmoothModifier.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Modifiers/StartEndModifier.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Modifiers/StartEndModifier.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Navmesh.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Navmesh/NavmeshUpdates.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Navmesh/NavmeshUpdates.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Navmesh/RelevantGraphSurface.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Navmesh/RelevantGraphSurface.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/Editor.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/Editor/EditorBase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/Editor/EditorBase.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/Editor/EditorGUIx.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/Editor/EditorGUIx.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/Editor/EnumFlagDrawer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/Editor/EnumFlagDrawer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/Editor/PackageToolsEditor.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/Editor/PackageToolsEditor.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/EnumFlagAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/EnumFlagAttribute.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/UniqueComponentAttribute.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/UniqueComponentAttribute.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/VersionedMonoBehaviour.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/PackageTools/VersionedMonoBehaviour.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Pathfinders.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Pathfinders/ABPath.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Pathfinders/ABPath.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Plugins.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Plugins/DotNetZip.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Plugins/DotNetZip/DotNetZipLicense.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Plugins/DotNetZip/DotNetZipLicense.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Plugins/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Plugins/dependencies.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Plugins/dependencies.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Readme.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Readme_upgrading.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Readme_upgrading.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/TurnBased.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/TurnBased/BlockManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/TurnBased/BlockManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/TurnBased/SingleNodeBlocker.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/TurnBased/SingleNodeBlocker.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/AstarChecksum.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/AstarChecksum.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/AstarMemory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/AstarMemory.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/AstarParallel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/AstarParallel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/AstarProfiler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/AstarProfiler.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/DotNetReplacements.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/DotNetReplacements.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/Funnel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/Funnel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/GraphGizmoHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/GraphGizmoHelper.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/GraphUpdateUtilities.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/GraphUpdateUtilities.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/PathUtilities.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/PathUtilities.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/ProfileHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/ProfileHelper.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/RetainedGizmos.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/RetainedGizmos.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/UnityReferenceHelper.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/Utilities/UnityReferenceHelper.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/defines.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/defines.csv.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/link.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/link.xml.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AstarPathfindingProject/package.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Cainos/Pixel Art Platformer - Village Props/Texture/TX Tileset Ground Darken.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cainos/Pixel Art Platformer - Village Props/Texture/TX Tileset Ground Darken.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Cainos/Pixel Art Platformer - Village Props/Texture/TX Tileset Ground.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cainos/Pixel Art Platformer - Village Props/Texture/TX Tileset Ground.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Cainos/Pixel Art Platformer - Village Props/Texture/TX Village Props.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cainos/Pixel Art Platformer - Village Props/Texture/TX Village Props.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Sprites/BlockFlash.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Sprites/BlockFlash.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Sprites/EnvironmentTiles.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Sprites/EnvironmentTiles.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Sprites/HeroKnight.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Sprites/HeroKnight.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Sprites/HeroKnight_BlockNoEffect.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Sprites/HeroKnight_BlockNoEffect.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Sprites/HeroKnight_DeathNoBlood.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Sprites/HeroKnight_DeathNoBlood.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Sprites/SlideDust.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Sprites/SlideDust.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Flying eye/Attack1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Flying eye/Attack1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Flying eye/Attack2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Flying eye/Attack2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Flying eye/Death.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Flying eye/Death.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Flying eye/Flight.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Flying eye/Flight.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Flying eye/Take Hit.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Flying eye/Take Hit.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Goblin/Attack1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Goblin/Attack1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Goblin/Attack2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Goblin/Attack2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Goblin/Death.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Goblin/Death.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Goblin/Idle.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Goblin/Idle.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Goblin/Run.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Goblin/Run.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Goblin/Take Hit.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Goblin/Take Hit.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Mushroom/Attack1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Mushroom/Attack1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Mushroom/Attack2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Mushroom/Attack2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Mushroom/Death.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Mushroom/Death.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Mushroom/Idle.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Mushroom/Idle.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Mushroom/Run.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Mushroom/Run.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Mushroom/Take Hit.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Mushroom/Take Hit.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/Attack1Ske.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/Attack1Ske.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/Attack2Ske.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/Attack2Ske.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/DeathSke.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/DeathSke.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/IdleSke.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/IdleSke.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/ShieldSke.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/ShieldSke.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/Take HitSke.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/Take HitSke.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/WalkSke.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Sprites/Skeleton/WalkSke.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Render/2D Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Render/2D Renderer.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Render/URP.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Render/URP.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/HeroInForest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/HeroInForest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/EnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/EnemyAI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shader/PlayerGlow.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shader/PlayerGlow.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2qR0C2JXL3qHJcHVHe1MSSCrkfg" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\zzdnh\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\zzdnh\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\zzdnh\\AppData\\Local\\Symbols\\src"
+    ]
+  }
+}]]></component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.28f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;H:\Work\Unity Github project\2DHeroPlatformPractice&quot; -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="H:\Work\Unity Github project\2DHeroPlatformPractice" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.28f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;H:\Work\Unity Github project\2DHeroPlatformPractice&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="H:\Work\Unity Github project\2DHeroPlatformPractice" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ede1de99-ff10-40b7-804e-39dbfb3793a1" name="Changes" comment="" />
+      <created>1734609949702</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1734609949702</updated>
+      <workItem from="1734609954778" duration="2786000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
+    <option name="unityProject" value="true" />
+    <option name="unityProjectFolder" value="true" />
+  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>
