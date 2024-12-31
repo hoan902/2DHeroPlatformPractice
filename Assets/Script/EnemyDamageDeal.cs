@@ -6,20 +6,15 @@ public class EnemyDamageDeal : MonoBehaviour
 {
     public int damage = 0;
 
-    [SerializeField]
-    private Transform m_playerTranform;
-
-    private void OnTriggerEnter2D(Collider2D Target)
+    private void OnTriggerEnter2D(Collider2D target)
     {
-        PlayerInfo player = Target.GetComponent<PlayerInfo>();
-        m_playerTranform = Target.GetComponent<Transform>();
-        if (player != null)
-        {
-            if(!PlayerMovement.Instance.m_isBlocking || PlayerMovement.Instance.m_isBlocking && m_playerTranform.eulerAngles == transform.eulerAngles)
-            {
-                player.TakeDamage(damage);
-            }
-        }
-        Destroy(gameObject);
+        PlayerInfo player = target.GetComponent<PlayerInfo>();
+        PlayerMovement playerMovement = target.GetComponent<PlayerMovement>();
+        if (!player)
+            return;
+        if (player.currentHealth <= 0)
+            return;
+        if (!playerMovement.IsBlocking())
+            player.TakeDamage(damage);
     }
 }

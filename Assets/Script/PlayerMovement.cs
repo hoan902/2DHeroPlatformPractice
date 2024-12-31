@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
 
-    //---------------- SerializeField zone ----------------------------
+    #region === SerializeField ------------------------------------------
     [SerializeField]
     private LayerMask platformLayerMask;
 
@@ -38,13 +38,14 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     GameObject m_Atk3;
+    #endregion
 
-    //---------------- Private zone ----------------------------
+    #region === Private ------------------------------------------
     float nextRollingTime = 0f;
     float nextBlockingTime = 0f;
     float AtkingTime = 0f;
 
-    Grounded m_grounded;
+    TerrianDetection m_terrianDetection;
     CeilingCheck m_ceilingCheck;
 
     private int m_facingDirection = 1;
@@ -53,27 +54,34 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D m_boxCollider2D;
     private CircleCollider2D m_circleCollider2D;
     private SpriteRenderer m_spriteRenderer;
-    private Transform m_transform;
     private bool m_isAtking = false;
     private bool m_rolling = false;
     private float m_delayToIdle = 0.0f;
     private string m_buttonPress;
+    private bool m_isBlocking = false;
+    #endregion
 
-    //---------------- Public Zone ----------------------------
+    #region === Public ------------------------------------------
     public Transform attackPoint;
-    public bool m_isBlocking = false;
     public TextMeshProUGUI Timer;
     public Text RollCooldownUI;
     public Image RollCooldownUIIcon;
-    public const string Right = "Right";
-    public const string Left = "Left";
-    public const string Jump = "Jump";
-    public const string Atk = "Atk";
-    public const string Roll = "Rolling";
-    public const string Rolling = "Keep Rolling";
+    #endregion
+
+    #region === Const String --------------------------------------
+    const string right = "Right";
+    const string left = "Left";
+    const string jump = "Jump";
+    const string atk = "Atk";
+    const string roll = "Rolling";
+    const string rolling = "Keep Rolling";
+    #endregion
+    
     int atkStyleChange = 1;
 
-    //--------------------------------- Singleton Pattern ---------------------------
+    #region XXXX Singleton Pattern (Not using but keep here to remind what singleton is)
+
+    /*//--------------------------------- Singleton Pattern (Not using but keep here to remind what singleton is) ---------------------------
     public static PlayerMovement Instance { get; private set; }
     private void Awake()
     {
@@ -88,18 +96,18 @@ public class PlayerMovement : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
         }
-    }
+    }*/
+
+    #endregion
+    
 
     // Start is called before the first frame update
     void Start()
     {
         m_rgbd2d = GetComponent<Rigidbody2D>();
         m_boxCollider2D = GetComponent<BoxCollider2D>();
-        m_circleCollider2D = GetComponent<CircleCollider2D>();
         m_animator = GetComponent<Animator>();
-        m_spriteRenderer = GetComponent<SpriteRenderer>();
-        m_transform = GetComponent<Transform>();
-        m_grounded = GetComponent<Grounded>();
+        m_terrianDetection = GetComponent<TerrianDetection>();
         m_ceilingCheck = GetComponent<CeilingCheck>();
     }
 
@@ -109,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //--- Checking UI Rolling CD ---
-        m_grounded.IsGrounded();
+        m_terrianDetection.IsGrounded();
         m_ceilingCheck.IsCeilingCheck();
         float remainingCD = nextRollingTime - Time.time;
         if (remainingCD > 0)
@@ -129,24 +137,18 @@ public class PlayerMovement : MonoBehaviour
 
         //====== Assign key ======
         if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && !m_isBlocking && !m_rolling && m_boxCollider2D.enabled)
-        {
-            m_buttonPress = Right;
-        }
+            m_buttonPress = right;
         else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !m_isBlocking && !m_rolling && m_boxCollider2D.enabled)
-        {
-            m_buttonPress = Left;
-        }
+            m_buttonPress = left;
         else
-        {
             m_buttonPress = null;
-        }
 
         //--- jumping assign key --
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && !m_rolling && m_grounded.IsGrounded())
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && !m_rolling && m_terrianDetection.IsGrounded())
         {
             m_isBlocking = false;
             m_boxCollider2D.enabled = true;
-            m_buttonPress = Jump;
+            m_buttonPress = jump;
         }
 
         //--- Atking assign key --
@@ -154,13 +156,13 @@ public class PlayerMovement : MonoBehaviour
         {
             m_isBlocking = false;
             m_boxCollider2D.enabled = true;
-            m_buttonPress = Atk;
+            m_buttonPress = atk;
             m_isAtking = true;
         }
         else if (Input.GetKey(KeyCode.L) && !m_rolling && Time.time >= nextRollingTime)
         {
             m_isBlocking = false;
-            m_buttonPress = Roll;
+            m_buttonPress = roll;
         }
         // Block
         else if (Input.GetKeyDown(KeyCode.K) && !m_rolling && m_boxCollider2D.enabled && Time.time >= nextBlockingTime)
@@ -202,16 +204,16 @@ public class PlayerMovement : MonoBehaviour
         //*** keep Rolling ***
         if (m_ceilingCheck.IsCeilingCheck())
         {
-            m_buttonPress = Rolling;
+            m_buttonPress = rolling;
         }
         //*** Moving RIGHT ***
-        if (m_buttonPress == Right)
+        if (m_buttonPress == right)
         {
             //GetComponent<SpriteRenderer>().flipX = false;
             //flip with scaleX -1
             transform.eulerAngles = new Vector3(0, 0, 0);
             m_facingDirection = 1;
-            if(m_isAtking && m_grounded.IsGrounded() || m_isBlocking && m_grounded.IsGrounded())
+            if(m_isAtking && m_terrianDetection.IsGrounded() || m_isBlocking && m_terrianDetection.IsGrounded())
             {
                 m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
             }
@@ -219,7 +221,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
             }
-            if (m_grounded.IsGrounded() && !m_rolling)
+            if (m_terrianDetection.IsGrounded() && !m_rolling)
             {
                 m_delayToIdle = 0.05f;
                 m_animator.SetInteger("AnimState", 1);
@@ -227,13 +229,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //*** Moving LEFT ***
-        else if (m_buttonPress == Left)
+        else if (m_buttonPress == left)
         {
             //GetComponent<SpriteRenderer>().flipX = true; this only flipx the sprite (colider might not flip with it)
             //flip with scaleX -1
             transform.eulerAngles = new Vector3(0, -180, 0);
             m_facingDirection = -1;
-            if (m_isAtking && m_grounded.IsGrounded() || m_isBlocking && m_grounded.IsGrounded())
+            if (m_isAtking && m_terrianDetection.IsGrounded() || m_isBlocking && m_terrianDetection.IsGrounded())
             {
                 m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
             }
@@ -241,14 +243,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
             }
-            if (m_grounded.IsGrounded() && !m_rolling)
+            if (m_terrianDetection.IsGrounded() && !m_rolling)
             {
                 m_delayToIdle = 0.05f;
                 m_animator.SetInteger("AnimState", 1);
             }
         }
         //*** Rolling ***
-        else if (m_buttonPress == Roll)
+        else if (m_buttonPress == roll)
         {
             m_rolling = true;
             m_animator.SetTrigger("Roll");
@@ -256,7 +258,7 @@ public class PlayerMovement : MonoBehaviour
             nextRollingTime = Time.time + rollingRate;
             m_boxCollider2D.enabled = false;
         }
-        else if (m_buttonPress == Rolling)
+        else if (m_buttonPress == rolling)
         {
             m_rolling = true;
             m_animator.SetTrigger("Rolling");
@@ -266,22 +268,22 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //*** JUMPING ***
-        if (m_buttonPress == Jump)
+        if (m_buttonPress == jump)
         {
             m_animator.SetTrigger("Jump");
-            m_animator.SetBool("Grounded", m_grounded.IsGrounded());
+            m_animator.SetBool("Grounded", m_terrianDetection.IsGrounded());
             m_rgbd2d.velocity = Vector2.up * jumpForce;
         }
 
         //*** ATK ***
-        if (m_buttonPress == Atk)
+        if (m_buttonPress == atk)
         {
             m_isAtking = true;
             if (atkStyleChange > 3)
             {
                 atkStyleChange = 1;
             }
-            if (m_grounded.IsGrounded() && !m_rolling && m_isAtking)
+            if (m_terrianDetection.IsGrounded() && !m_rolling && m_isAtking)
             {
                 m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
                 //animator.Play("PlayerAtk");
@@ -289,7 +291,7 @@ public class PlayerMovement : MonoBehaviour
                 atkStyleChange++;
                 AtkingTime = Time.time + AtkingRate;
             }
-            else if (!m_grounded.IsGrounded() && !m_rolling)
+            else if (!m_terrianDetection.IsGrounded() && !m_rolling)
             {
                 m_animator.SetTrigger("Attack3");
                 AtkingTime = Time.time + AtkingRate;
@@ -316,6 +318,12 @@ public class PlayerMovement : MonoBehaviour
                 //m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
             }
         }
+    }
+    //---------------- Public Variables Class ---------------------
+
+    public bool IsBlocking()
+    {
+        return m_isBlocking;
     }
   
 

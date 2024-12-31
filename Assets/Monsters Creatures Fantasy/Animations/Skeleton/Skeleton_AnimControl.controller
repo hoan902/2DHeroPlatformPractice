@@ -59,7 +59,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: EnemyAnimState
+    m_ConditionEvent: EnemyWalking
     m_EventTreshold: 1
   - m_ConditionMode: 1
     m_ConditionEvent: Grounded
@@ -238,7 +238,7 @@ AnimatorController:
   m_Name: Skeleton_AnimControl
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: EnemyAnimState
+  - m_Name: EnemyWalking
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -434,7 +434,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 7
-    m_ConditionEvent: EnemyAnimState
+    m_ConditionEvent: EnemyWalking
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1272751405961179275}

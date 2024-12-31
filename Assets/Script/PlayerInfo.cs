@@ -12,6 +12,9 @@ public class PlayerInfo : MonoBehaviour
     private Rigidbody2D m_rb2D;
     private Animator m_animator;
     private BoxCollider2D m_boxCollider2D;
+    private PlayerMovement m_playerMovement;
+    private static readonly int Hurt = Animator.StringToHash("Hurt");
+    private static readonly int Death = Animator.StringToHash("Death");
 
     public void Start()
     {
@@ -20,12 +23,13 @@ public class PlayerInfo : MonoBehaviour
         m_animator = GetComponent<Animator>();
         m_rb2D = GetComponent<Rigidbody2D>();
         m_boxCollider2D = GetComponent<BoxCollider2D>();
+        m_playerMovement = GetComponent<PlayerMovement>();
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        m_animator.SetTrigger("Hurt");
+        m_animator.SetTrigger(Hurt);
         m_rb2D.velocity = new Vector2(0, m_rb2D.velocity.y);
         if(!m_boxCollider2D.enabled)
         {
@@ -41,9 +45,9 @@ public class PlayerInfo : MonoBehaviour
     // Update is called once per frame
     void Die()
     {
-        m_animator.SetTrigger("Death");
-        PlayerMovement.Instance.GetComponent<Rigidbody2D>().simulated = false;
-        PlayerMovement.Instance.enabled = false;
+        m_animator.SetTrigger(Death);
+        m_rb2D.simulated = false;
+        m_playerMovement.enabled = false;
         enabled = false;
         //Instantiate(deathEffect, transform.position, Quaternion.identity);
         //Destroy(gameObject);
