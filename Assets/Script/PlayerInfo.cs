@@ -31,10 +31,6 @@ public class PlayerInfo : MonoBehaviour
         currentHealth -= damage;
         m_animator.SetTrigger(Hurt);
         m_rb2D.velocity = new Vector2(0, m_rb2D.velocity.y);
-        if(!m_boxCollider2D.enabled)
-        {
-            m_boxCollider2D.enabled = true;
-        }    
         healthBar.SetCurrentHealth(currentHealth);
         if (currentHealth <= 0)
         {

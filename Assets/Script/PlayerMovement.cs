@@ -3,52 +3,62 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+
+enum KeyPressType
+{
+    None,
+    Right,
+    Left,
+    Jump,
+    Atk,
+    StartRoll,
+    Rolling
+}
 
 public class PlayerMovement : MonoBehaviour
 {
 
     #region === SerializeField ------------------------------------------
-    [SerializeField]
-    private LayerMask platformLayerMask;
+    [FormerlySerializedAs("platformLayerMask")] [SerializeField]
+    private LayerMask m_platformLayerMask;
 
-    [SerializeField]
-    private float movementSpd = 3f;
+    [FormerlySerializedAs("movementSpd")] [SerializeField]
+    private float m_movementSpd = 3f;
 
-    [SerializeField]
-    private float jumpForce = 25f;
+    [FormerlySerializedAs("jumpForce")] [SerializeField]
+    private float m_jumpForce = 25f;
 
     [SerializeField]
     float m_rollForce = 6.0f;
 
-    [SerializeField]
-    float rollingRate = 2f;
+    [FormerlySerializedAs("rollingRate")] [SerializeField]
+    float m_rollingRate = 2f;
     
-    [SerializeField]
-    float blockingRate = 2f;
+    [FormerlySerializedAs("blockingRate")] [SerializeField]
+    float m_blockingRate = 2f;
 
-    [SerializeField]
-    float AtkingRate = 0.35f;
+    [FormerlySerializedAs("AtkingRate")] [SerializeField]
+    float m_atkingRate = 0.35f;
 
-    [SerializeField]
-    GameObject m_Atk1;
+    [SerializeField] PlayerDamageDeal m_atk1;
 
-    [SerializeField]
-    GameObject m_Atk2;
+    [SerializeField] PlayerDamageDeal m_atk2;
 
-    [SerializeField]
-    GameObject m_Atk3;
+    [SerializeField] PlayerDamageDeal m_atk3;
     #endregion
 
     #region === Private ------------------------------------------
-    float nextRollingTime = 0f;
-    float nextBlockingTime = 0f;
-    float AtkingTime = 0f;
+    float m_nextRollingTime = 0f;
+    float m_nextBlockingTime = 0f;
+    float m_atkingTime = 0f;
 
     TerrianDetection m_terrianDetection;
     CeilingCheck m_ceilingCheck;
 
-    private int m_facingDirection = 1;
+    private Vector2 m_baseScale;
+    private int m_direction = 1;
     private Animator m_animator;
     private Rigidbody2D m_rgbd2d;
     private BoxCollider2D m_boxCollider2D;
@@ -57,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
     private bool m_isAtking = false;
     private bool m_rolling = false;
     private float m_delayToIdle = 0.0f;
-    private string m_buttonPress;
+    private KeyPressType m_buttonPress;
     private bool m_isBlocking = false;
     #endregion
 
@@ -66,15 +76,6 @@ public class PlayerMovement : MonoBehaviour
     public TextMeshProUGUI Timer;
     public Text RollCooldownUI;
     public Image RollCooldownUIIcon;
-    #endregion
-
-    #region === Const String --------------------------------------
-    const string right = "Right";
-    const string left = "Left";
-    const string jump = "Jump";
-    const string atk = "Atk";
-    const string roll = "Rolling";
-    const string rolling = "Keep Rolling";
     #endregion
     
     int atkStyleChange = 1;
@@ -109,6 +110,9 @@ public class PlayerMovement : MonoBehaviour
         m_animator = GetComponent<Animator>();
         m_terrianDetection = GetComponent<TerrianDetection>();
         m_ceilingCheck = GetComponent<CeilingCheck>();
+        
+        m_baseScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
+        m_direction = transform.localScale.x > 0 ? 1 : -1;
     }
 
 
@@ -119,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         //--- Checking UI Rolling CD ---
         m_terrianDetection.IsGrounded();
         m_ceilingCheck.IsCeilingCheck();
-        float remainingCD = nextRollingTime - Time.time;
+        float remainingCD = m_nextRollingTime - Time.time;
         if (remainingCD > 0)
         {
             RollCooldownUI.text = "Rolling CD: " + Math.Round(remainingCD, 1).ToString();
@@ -137,40 +141,40 @@ public class PlayerMovement : MonoBehaviour
 
         //====== Assign key ======
         if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && !m_isBlocking && !m_rolling && m_boxCollider2D.enabled)
-            m_buttonPress = right;
+            m_buttonPress = KeyPressType.Right;
         else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !m_isBlocking && !m_rolling && m_boxCollider2D.enabled)
-            m_buttonPress = left;
+            m_buttonPress = KeyPressType.Left;
         else
-            m_buttonPress = null;
+            m_buttonPress = KeyPressType.None;
 
         //--- jumping assign key --
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && !m_rolling && m_terrianDetection.IsGrounded())
         {
             m_isBlocking = false;
             m_boxCollider2D.enabled = true;
-            m_buttonPress = jump;
+            m_buttonPress = KeyPressType.Jump;
         }
 
         //--- Atking assign key --
-        if ((Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.Z)) && Time.time >= AtkingTime && !m_rolling)
+        if ((Input.GetKey(KeyCode.J) || Input.GetKey(KeyCode.Z)) && Time.time >= m_atkingTime && !m_rolling)
         {
             m_isBlocking = false;
             m_boxCollider2D.enabled = true;
-            m_buttonPress = atk;
+            m_buttonPress = KeyPressType.Atk;
             m_isAtking = true;
         }
-        else if (Input.GetKey(KeyCode.L) && !m_rolling && Time.time >= nextRollingTime)
+        else if (Input.GetKey(KeyCode.L) && !m_rolling && Time.time >= m_nextRollingTime)
         {
             m_isBlocking = false;
-            m_buttonPress = roll;
+            m_buttonPress = KeyPressType.StartRoll;
         }
         // Block
-        else if (Input.GetKeyDown(KeyCode.K) && !m_rolling && m_boxCollider2D.enabled && Time.time >= nextBlockingTime)
+        else if (Input.GetKeyDown(KeyCode.K) && !m_rolling && m_boxCollider2D.enabled && Time.time >= m_nextBlockingTime)
         {
             m_isBlocking = true;
             m_animator.SetTrigger("Block");
             m_animator.SetBool("IdleBlock", true);
-            nextBlockingTime = Time.time + blockingRate;
+            m_nextBlockingTime = Time.time + m_blockingRate;
         }
         else if (Input.GetKeyUp(KeyCode.K))
         {
@@ -192,141 +196,111 @@ public class PlayerMovement : MonoBehaviour
         //===============================
         //=== 2. Movements and Atk   ====
         //===============================
+        
         //*** Check invincible rolling ***
         if (!m_boxCollider2D.enabled && m_rolling)
-        {
             Physics2D.IgnoreLayerCollision(3, 8, true);
-        }
         if (m_boxCollider2D.enabled && !m_rolling)
-        {
             Physics2D.IgnoreLayerCollision(3, 8, false);
-        }
+        
         //*** keep Rolling ***
         if (m_ceilingCheck.IsCeilingCheck())
-        {
-            m_buttonPress = rolling;
-        }
-        //*** Moving RIGHT ***
-        if (m_buttonPress == right)
-        {
-            //GetComponent<SpriteRenderer>().flipX = false;
-            //flip with scaleX -1
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            m_facingDirection = 1;
-            if(m_isAtking && m_terrianDetection.IsGrounded() || m_isBlocking && m_terrianDetection.IsGrounded())
-            {
-                m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
-            }
-            else
-            {
-                m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
-            }
-            if (m_terrianDetection.IsGrounded() && !m_rolling)
-            {
-                m_delayToIdle = 0.05f;
-                m_animator.SetInteger("AnimState", 1);
-            }
-        }
+            m_buttonPress = KeyPressType.Rolling;
 
-        //*** Moving LEFT ***
-        else if (m_buttonPress == left)
+        switch (m_buttonPress)
         {
-            //GetComponent<SpriteRenderer>().flipX = true; this only flipx the sprite (colider might not flip with it)
-            //flip with scaleX -1
-            transform.eulerAngles = new Vector3(0, -180, 0);
-            m_facingDirection = -1;
-            if (m_isAtking && m_terrianDetection.IsGrounded() || m_isBlocking && m_terrianDetection.IsGrounded())
-            {
-                m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
-            }
-            else
-            {
-                m_rgbd2d.velocity = new Vector2(m_facingDirection * movementSpd, m_rgbd2d.velocity.y);
-            }
-            if (m_terrianDetection.IsGrounded() && !m_rolling)
-            {
-                m_delayToIdle = 0.05f;
-                m_animator.SetInteger("AnimState", 1);
-            }
-        }
-        //*** Rolling ***
-        else if (m_buttonPress == roll)
-        {
-            m_rolling = true;
-            m_animator.SetTrigger("Roll");
-            m_rgbd2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_rgbd2d.velocity.y);
-            nextRollingTime = Time.time + rollingRate;
-            m_boxCollider2D.enabled = false;
-        }
-        else if (m_buttonPress == rolling)
-        {
-            m_rolling = true;
-            m_animator.SetTrigger("Rolling");
-            m_rgbd2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_rgbd2d.velocity.y);
-            nextRollingTime = Time.time + rollingRate;
-            m_boxCollider2D.enabled = false;
-        }
-
-        //*** JUMPING ***
-        if (m_buttonPress == jump)
-        {
-            m_animator.SetTrigger("Jump");
-            m_animator.SetBool("Grounded", m_terrianDetection.IsGrounded());
-            m_rgbd2d.velocity = Vector2.up * jumpForce;
-        }
-
-        //*** ATK ***
-        if (m_buttonPress == atk)
-        {
-            m_isAtking = true;
-            if (atkStyleChange > 3)
-            {
-                atkStyleChange = 1;
-            }
-            if (m_terrianDetection.IsGrounded() && !m_rolling && m_isAtking)
-            {
-                m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
-                //animator.Play("PlayerAtk");
-                m_animator.SetTrigger("Attack" + atkStyleChange);
-                atkStyleChange++;
-                AtkingTime = Time.time + AtkingRate;
-            }
-            else if (!m_terrianDetection.IsGrounded() && !m_rolling)
-            {
-                m_animator.SetTrigger("Attack3");
-                AtkingTime = Time.time + AtkingRate;
-            }
-        }
-
-        //*** NOT DOING ANYTHING ELSE ***
-        if (m_buttonPress == null)
-        {
-            // Prevents flickering transitions to idle
-            m_delayToIdle -= Time.deltaTime;
-            if (m_delayToIdle < 0)
-                m_animator.SetInteger("AnimState", 0);
-            if (m_rolling)
-            {
-                m_rolling = false;
-            }
-            if (m_isAtking)
-            {
-                m_isAtking = false;
-            }
-            if (Time.time >= AtkingTime)
-            {
-                //m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
-            }
+            case KeyPressType.None:
+                m_delayToIdle -= Time.deltaTime;
+                if (m_delayToIdle < 0)
+                    m_animator.SetInteger("AnimState", 0);
+                if (m_rolling)
+                {
+                    m_rolling = false;
+                }
+                if (m_isAtking)
+                {
+                    m_isAtking = false;
+                }
+                /*if (Time.time >= m_atkingTime)
+                {
+                    m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
+                }*/
+                break;
+            case KeyPressType.Right:
+                MovingDirection(1);
+                break;
+            case KeyPressType.Left:
+                MovingDirection(-1);
+                break;
+            case KeyPressType.Jump:
+                m_animator.SetTrigger("Jump");
+                m_animator.SetBool("Grounded", m_terrianDetection.IsGrounded());
+                m_rgbd2d.velocity = Vector2.up * m_jumpForce;
+                break;
+            case KeyPressType.Atk:
+                m_isAtking = true;
+                if (atkStyleChange > 3)
+                {
+                    atkStyleChange = 1;
+                }
+                if (m_terrianDetection.IsGrounded() && !m_rolling && m_isAtking)
+                {
+                    m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
+                    //animator.Play("PlayerAtk");
+                    m_animator.SetTrigger("Attack" + atkStyleChange);
+                    atkStyleChange++;
+                    m_atkingTime = Time.time + m_atkingRate;
+                }
+                else if (!m_terrianDetection.IsGrounded() && !m_rolling)
+                {
+                    m_animator.SetTrigger("Attack3");
+                    m_atkingTime = Time.time + m_atkingRate;
+                }
+                break;
+            case KeyPressType.StartRoll:
+                m_rolling = true;
+                m_animator.SetTrigger("Roll");
+                m_rgbd2d.velocity = new Vector2(m_direction * m_rollForce, m_rgbd2d.velocity.y);
+                m_nextRollingTime = Time.time + m_rollingRate;
+                m_boxCollider2D.enabled = false;
+                break;
+            case KeyPressType.Rolling:
+                m_rolling = true;
+                m_animator.SetTrigger("Rolling");
+                m_rgbd2d.velocity = new Vector2(m_direction * m_rollForce, m_rgbd2d.velocity.y);
+                m_nextRollingTime = Time.time + m_rollingRate;
+                m_boxCollider2D.enabled = false;
+                break;
         }
     }
-    //---------------- Public Variables Class ---------------------
+    //---------------- Public Variables Classes ---------------------
 
     public bool IsBlocking()
     {
         return m_isBlocking;
     }
   
+    //-------------------- Private Classes ------------------
+    void UpdateDirection(int dir)
+    {
+        m_direction = dir;
+        transform.localScale = new Vector3(m_baseScale.x * m_direction, m_baseScale.y, 1);
+    }
 
+    void MovingDirection(int dir)
+    {
+        UpdateDirection(dir);
+        if(m_isAtking && m_terrianDetection.IsGrounded() || m_isBlocking && m_terrianDetection.IsGrounded())
+            m_rgbd2d.velocity = new Vector2(0, m_rgbd2d.velocity.y);
+        else
+            m_rgbd2d.velocity = new Vector2(m_direction * m_movementSpd, m_rgbd2d.velocity.y);
+        if (m_terrianDetection.IsGrounded() && !m_rolling)
+        {
+            m_delayToIdle = 0.05f;
+            m_animator.SetInteger("AnimState", 1);
+        }
+    }
+    
     //---------------- Animation Events ---------------------
     void AE_ResetRoll()
     {
@@ -343,23 +317,21 @@ public class PlayerMovement : MonoBehaviour
     }
     void AE_AtkDamage1()
     {
-        GameObject Atk = Instantiate(m_Atk1, attackPoint);
+        m_atk1.EnableAttack();
     }
     void AE_AtkDamage2()
     {
-        GameObject Atk = Instantiate(m_Atk2, attackPoint);   
+        m_atk2.EnableAttack();
     }
     void AE_AtkDamage3()
     {
-        GameObject Atk = Instantiate(m_Atk3, attackPoint);
+        m_atk3.EnableAttack();
     }
     void AE_AtkDamageEnd()
     {
         m_isAtking = false;
-        GameObject[] DestroyAtk = GameObject.FindGameObjectsWithTag("Slashing");
-        foreach (GameObject Atk in DestroyAtk)
-        {
-            Destroy(Atk);
-        }
+        m_atk1.DisableAttack();
+        m_atk2.DisableAttack();
+        m_atk3.DisableAttack();
     }
 }

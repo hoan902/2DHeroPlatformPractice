@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour
     [Header("____ Transform ____")]
     [SerializeField] Transform m_target;
     [SerializeField] Transform m_attackPoint;
+    [SerializeField] private Transform m_dangerNoti;
     [FormerlySerializedAs("m_argoTransform")]
     [Header("____ Detecting Collider ____")]
     [SerializeField] Collider2D m_argoCollider;
@@ -29,8 +30,8 @@ public class EnemyAI : MonoBehaviour
 
     [Header("____ Atking Config ___")]
     [SerializeField] float m_atkingRate = 1.35f;
-    [SerializeField] GameObject m_atk1;
-    [SerializeField] GameObject m_atk2;
+    [SerializeField] EnemyDamageDeal m_atk1;
+    [SerializeField] EnemyDamageDeal m_atk2;
     
     [Header("____ Distance detection config ____")]
     [SerializeField] float m_downDistance;
@@ -49,6 +50,7 @@ public class EnemyAI : MonoBehaviour
     private float m_atkingTime = 0f;
     private int m_direction;
     private Vector2 m_baseScale;
+    private bool m_isInAtkRange = false;
 
     [Header("____ Current State ____")]
     [SerializeField] private State m_state;
@@ -69,25 +71,22 @@ public class EnemyAI : MonoBehaviour
         m_animator = GetComponent<Animator>();
         m_rb2D = GetComponent<Rigidbody2D>();
         m_terrianDetection = GetComponent<TerrianDetection>();
-        m_state = State.Roaming;
         m_baseScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
         m_direction = transform.localScale.x > 0 ? 1 : -1;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
+        m_state = State.Roaming;
         Physics2D.IgnoreLayerCollision(8, 8, true); //Ignore self collision with others enemies
     }
-
-    //Update is called once per fixed second (can change in unity project setting)
+    
     void FixedUpdate()
     {
         switch (m_state)
         {
-            // ------------- Roaming -----------------
             case State.Roaming:
-                m_isAtking = false;
+                m_dangerNoti.gameObject.SetActive(false);
                 m_detectVisionCollider.enabled = true;
                 m_argoCollider.enabled = false;
                 m_attackingRangeCollider.enabled = false;
@@ -101,43 +100,38 @@ public class EnemyAI : MonoBehaviour
                 if (m_terrianDetection.CheckWall(m_direction) || m_terrianDetection.CheckAbyss(m_direction))
                     UpdateDirection();
                 break;
-            //===============================================================================================
-            //===============================    Argo player    ========================================
-            //===============================================================================================
             case State.ArgoPlayer:
-                //===============================================================================================
                 if (m_isAtking || !m_playerInfo)
+                {
+                    m_rb2D.velocity = new Vector2(0, m_rb2D.velocity.y);
                     return;
+                }
                 if (m_playerInfo.currentHealth <= 0)
                 {
                     m_state = State.Roaming;
                     return;
                 }
+                m_dangerNoti.gameObject.SetActive(true);
                 UpdateDirection(m_playerInfo.transform);
                 m_rb2D.velocity = new Vector2(m_direction * m_speed, m_rb2D.velocity.y);
                 m_animator.SetInteger(EnemyWalking, 1);
                 m_animator.SetBool(Grounded, true);
+                if (m_terrianDetection.CheckWall(m_direction) || m_terrianDetection.CheckAbyss(m_direction))
+                    m_state = State.Roaming;
                 break;
-            //===============================================================================================
-            //===============================================================================================
-
-
-            //===============================================================================================
-            //===============================    Attacking player    ========================================
-            //===============================================================================================
             case State.AttackingPlayer:
-                //===============================================================================================
-                //===============================================================================================
                 if (m_playerInfo.currentHealth <= 0)
                 {
                     m_state = State.Roaming;
                     return;
                 }
-                if (Time.time >= m_atkingTime && m_isAtking)
+                m_isAtking = true;
+                m_rb2D.velocity = new Vector2(0, m_rb2D.velocity.y);
+                if (Time.time >= m_atkingTime)
                 {
                     if (m_atkStyleChange > 2)
                         m_atkStyleChange = 1;
-                    if (m_terrianDetection.IsGrounded() && m_isAtking)
+                    if (m_terrianDetection.IsGrounded())
                     {
                         m_rb2D.velocity = new Vector2(0, m_rb2D.velocity.y);
                         m_animator.SetTrigger("Atk" + m_atkStyleChange);
@@ -152,8 +146,6 @@ public class EnemyAI : MonoBehaviour
                     }*/
                 }
                 break;
-                //===============================================================================================
-                //===============================================================================================
         }
     }
     
@@ -182,7 +174,6 @@ public class EnemyAI : MonoBehaviour
             m_state = State.Roaming;
             return;
         }
-        m_isAtking = false;
         m_detectVisionCollider.enabled = false;
         m_argoCollider.enabled = true;
         m_attackingRangeCollider.enabled = true;
@@ -199,9 +190,8 @@ public class EnemyAI : MonoBehaviour
             m_state = State.Roaming;
             return;
         }
-        Debug.LogError("+ Player In Atk Range");
-        m_isAtking = true;
         m_state = State.AttackingPlayer;
+        m_isInAtkRange = true;
     }
 
     public void PlayerOutAtkRange(Collider2D other)
@@ -214,9 +204,7 @@ public class EnemyAI : MonoBehaviour
             m_state = State.Roaming;
             return;
         }
-        Debug.LogError("- Player Out Atk Range");
-        m_isAtking = false;
-        m_state = State.ArgoPlayer;
+        m_isInAtkRange = false;
     }
     public void PlayerInOfArgoRange(Collider2D other)
     {
@@ -225,7 +213,6 @@ public class EnemyAI : MonoBehaviour
             m_state = State.Roaming;
             return;
         }
-        Debug.LogError("+ Player In Argo Range");
         m_playerInfo = other.transform.GetComponent<PlayerInfo>();
         if (m_playerInfo.currentHealth > 0)
             m_state = State.ArgoPlayer;
@@ -235,9 +222,10 @@ public class EnemyAI : MonoBehaviour
 
     public void PlayerOutOfArgoRange(Collider2D other)
     {
+        if (m_isAtking)
+            return;
         if (!other.transform.GetComponent<PlayerInfo>())
             return;
-        Debug.LogError("- Player In Argo Range");
         m_playerInfo = null;
         m_state = State.Roaming;
     }
@@ -245,18 +233,36 @@ public class EnemyAI : MonoBehaviour
     //===============================================================================================
     //=================================    Animation Event    =======================================
     //===============================================================================================
+    void AE_AtkDamageBegin()
+    {
+        m_isAtking = true;
+        m_detectVisionCollider.enabled = false;
+        m_argoCollider.enabled = false;
+    }
+
     void AE_AtkDamage1()
     {
         //GameObject Atk = Instantiate(m_atk1, m_attackPoint);
-        m_atk1.SetActive(true);
+        m_atk1.EnableAttack();
     }
     void AE_AtkDamage2()
     {
-        m_atk2.SetActive(true);
+        m_atk2.EnableAttack();
     }
-    void AE_AtkDamageEnd()
+    void AE_AtkDamageEnd1()
     {
-        m_atk1.SetActive(false);
-        m_atk2.SetActive(false);
+        m_atk1.DisableAttack();
+        Debug.LogError("DISABLE 1");
+    }
+    void AE_AtkDamageEnd2()
+    {
+        m_atk2.DisableAttack();
+        Debug.LogError("DISABLE 2");
+        m_isAtking = false;
+        if (m_isInAtkRange) 
+            return;
+        m_state = State.ArgoPlayer;
+        m_detectVisionCollider.enabled = true;
+        m_argoCollider.enabled = true;
     }
 }

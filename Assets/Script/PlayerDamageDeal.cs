@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerDamageDeal : MonoBehaviour
 {
     public int damage = 0;
+    [SerializeField] private Collider2D m_atkCollider;
     private void OnTriggerEnter2D(Collider2D Target)
     {
         EnemyInfo enemy = Target.GetComponent<EnemyInfo>();
@@ -12,6 +13,16 @@ public class PlayerDamageDeal : MonoBehaviour
         {
             enemy.TakeDamage(damage);
         }
-        Destroy(gameObject);
+        m_atkCollider.enabled = false;
+    }
+    
+    public void DisableAttack()
+    {
+        m_atkCollider.enabled = false;
+    }
+
+    public void EnableAttack()
+    {
+        m_atkCollider.enabled = true;
     }
 }
