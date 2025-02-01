@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ede1de99-ff10-40b7-804e-39dbfb3793a1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.2DHeroPlatformPractice/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2DHeroPlatformPractice/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Animations/HeroKnight_Attack1.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Animations/HeroKnight_Attack1.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Animations/HeroKnight_Attack2.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Animations/HeroKnight_Attack2.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Animations/HeroKnight_Attack3.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Hero Knight - Pixel Art/Animations/HeroKnight_Attack3.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Animations/Skeleton/Skeleton_Atk1.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Animations/Skeleton/Skeleton_Atk1.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Animations/Skeleton/Skeleton_Atk2.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Monsters Creatures Fantasy/Animations/Skeleton/Skeleton_Atk2.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/HeroKnight_Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/HeroKnight_Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Skeleton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Skeleton.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SlashDamage1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SlashDamage1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SlashDamage2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SlashDamage2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SlashDamage3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SlashDamage3.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SlashEnemy1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SlashEnemy1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SlashEnemy2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SlashEnemy2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/HeroInForest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/HeroInForest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/EnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/EnemyAI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/EnemyDamageDeal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/EnemyDamageDeal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/PlayerDamageDeal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/PlayerDamageDeal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/PlayerInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/PlayerInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/PlayerMovement.cs" afterDir="false" />
-    </list>
+    <list default="true" id="ede1de99-ff10-40b7-804e-39dbfb3793a1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,6 +15,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/55fbbbd17b724c15b6abe8c1a3e3289c175c00/3c/64268360/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/GameConstant.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -92,10 +73,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="39540">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="39540" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -120,6 +101,7 @@
       <workItem from="1735636749110" duration="8168000" />
       <workItem from="1736240400685" duration="8164000" />
       <workItem from="1736337365415" duration="7490000" />
+      <workItem from="1736586902625" duration="5943000" />
     </task>
     <servers />
   </component>

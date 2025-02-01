@@ -15,5 +15,6 @@ public class GameManager : MonoBehaviour
     void InitMusic()
     {
         SoundManager.PlaySound(m_musicTheme, true, true);
+        SoundManager.AdjustVolumeMusic(0.2f);
     }
 }

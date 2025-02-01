@@ -288,6 +288,10 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsBlocking()
     {
+        if (m_isBlocking)
+            SoundManager.PlaySound(m_blockAudio, false);
+        else
+            SoundManager.PlaySound(m_hurtAudio, false);
         return m_isBlocking;
     }
   

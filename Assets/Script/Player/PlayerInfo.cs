@@ -33,9 +33,7 @@ public class PlayerInfo : MonoBehaviour
         m_rb2D.velocity = new Vector2(0, m_rb2D.velocity.y);
         healthBar.SetCurrentHealth(currentHealth);
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
 
     // Update is called once per frame
