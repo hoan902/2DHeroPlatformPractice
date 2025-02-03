@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 358795ee094b2b049a18f8e29ac6cadb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 118057
+  packageName: Game 2D Water Kit
+  packageVersion: 1.4.8
+  assetPath: Assets/Game2DWaterKit/Runtime/Scripts/Rendering/RenderingModule.cs
+  uploadId: 534182

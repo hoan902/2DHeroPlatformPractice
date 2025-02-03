@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 9529f8788b3de5c4296e9deecfe38235
+timeCreated: 1521212041
+licenseType: Store
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 118057
+  packageName: Game 2D Water Kit
+  packageVersion: 1.4.8
+  assetPath: Assets/Game2DWaterKit/Runtime/Shaders/Game2DWaterKit.cginc
+  uploadId: 534182

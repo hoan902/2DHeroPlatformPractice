@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e8e9a22123ce0df46942334fe3ac4290
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 118057
+  packageName: Game 2D Water Kit
+  packageVersion: 1.4.8
+  assetPath: Assets/Game2DWaterKit/Runtime/Scripts/Animation/WaterfallAnimationModule.cs
+  uploadId: 534182

@@ -10,6 +10,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private GameObject m_audioPrefab;
     [SerializeField] private AudioClip[] m_clips;
 
+    private readonly List<AudioSource> m_masterSounds = new();
+    
     private AudioSource m_music;
     private List<AudioSource> m_sounds;
     private bool m_musicOn;
@@ -144,7 +146,6 @@ public class SoundManager : MonoBehaviour
             return go;
         }
     }
-
     public static GameObject PlaySound(AudioClip clip, bool loop, bool music = false, bool unpause = false)
     {
         if (music)
@@ -186,7 +187,6 @@ public class SoundManager : MonoBehaviour
             return go;
         }
     }
-
     public static GameObject PlaySound3D(string clipName, float distance, bool loop, Vector2 position)
     {
         if(!loop)
@@ -207,6 +207,64 @@ public class SoundManager : MonoBehaviour
             s_api.m_sounds = new List<AudioSource>();
         s_api.m_sounds.Add(audioComp);
         return go;
+    }
+    AudioSource Create2DSound(AudioClip clip, bool loop, bool music, bool unpause)
+    {
+        if (music)
+        {
+            if (m_music != null)
+                Destroy(m_music.gameObject);
+
+            GameObject go = Instantiate(m_audioPrefab);
+            AudioHelper source = go.GetComponent<AudioHelper>();
+            source.Play(clip, loop);
+            m_music = go.GetComponent<AudioSource>();
+            m_music.volume = m_musicOn ? m_currentMusicVolume : 0;
+            m_music.ignoreListenerPause = unpause;
+
+            return m_music;
+        }
+        else
+        {
+            if (!loop)
+            {
+                if (m_durationConfig.ContainsKey(clip.name) && m_duration.TryGetValue(clip.name, out var value))
+                {
+                    float delTime = Time.time - value;
+                    if (delTime < m_durationConfig[clip.name])
+                        return null;
+                }
+            }
+            m_duration.Remove(clip.name);
+            m_duration.Add(clip.name, Time.time);
+            GameObject go = Instantiate(m_audioPrefab);
+            AudioHelper source = go.GetComponent<AudioHelper>();
+            source.Play(clip, loop);
+            AudioSource audioComp = go.GetComponent<AudioSource>();
+            audioComp.volume = m_soundOn ? 1 : 0;
+            audioComp.ignoreListenerPause = unpause;
+            m_sounds.Add(audioComp);
+            return audioComp;
+        }
+    }
+    AudioSource Create3DSound(AudioClip clip, float distance, bool loop, Vector2 position)
+    {
+        if (!loop)
+        {
+            if (m_durationConfig.ContainsKey(clip.name) && m_duration.TryGetValue(clip.name, out var value))
+            {
+                float delTime = Time.time - value;
+                if (delTime < m_durationConfig[clip.name])
+                    return null;
+            }
+        }
+        GameObject go = Instantiate(m_audioPrefab);
+        AudioHelper source = go.GetComponent<AudioHelper>();
+        source.Play3D(clip, distance, loop, position);
+        AudioSource audioComp = go.GetComponent<AudioSource>();
+        audioComp.volume = m_soundOn ? 1 : 0;
+        m_sounds.Add(audioComp);
+        return audioComp;
     }
 
     public static GameObject PlaySound3D(AudioClip clip, float distance, bool loop, Vector2 position)
@@ -230,30 +288,66 @@ public class SoundManager : MonoBehaviour
         s_api.m_sounds.Add(audioComp);
         return go;
     }
+    public GameObject PlayMasterSound(AudioClip clip, bool loop, bool music = false, bool unpause = false)
+    {
+        Clean();
+        int index = m_masterSounds.FindIndex(x => x.clip == clip);
+        if (index > -1)
+            return m_masterSounds[index].gameObject;
+        var comp = Create2DSound(clip, loop, music, unpause);
+        m_masterSounds.Add(comp);
+        return comp == null ? null : comp.gameObject;
+    }
+    public GameObject PlayMasterSound3D(AudioClip clip, float distance, bool loop, Vector2 position)
+    {
+        Clean();
+        int index = m_masterSounds.FindIndex(x => x.clip == clip);
+        if (index > -1)
+            return m_masterSounds[index].gameObject;
+        var comp = Create3DSound(clip, distance, loop, position);
+        m_masterSounds.Add(comp);
+        return comp == null ? null : comp.gameObject;
+    }
+    
+    void Clean()
+    {
+        for (int i = 0; i < m_sounds.Count; i++)
+        {
+            if (m_sounds[i] == null)
+            {
+                m_sounds.RemoveAt(i);
+                i--;
+            }
+        }
 
+        for (int i = 0; i < m_masterSounds.Count; i++)
+        {
+            if (m_masterSounds[i] == null)
+            {
+                m_masterSounds.RemoveAt(i);
+                i--;
+            }
+        }
+    }
     private AudioClip GetClip(string clipName)
     {
         return m_clips.FirstOrDefault(t => t.name == clipName);
     }
-
     void OnApplicationQuit()
     {
         MainModel.SaveAllInfo();
     }
-
-        public static void StopMusic()
+    public static void StopMusic()
     {
         if(s_api.m_music == null)
             return;
         Destroy(s_api.m_music.gameObject);
         s_api.m_music = null;
     }
-
     public static AudioSource GetSource()
     {
         return s_api.m_music;
     }
-
     public static float GetCurrentMusicVolume()
     {
         if(s_api.m_music == null)

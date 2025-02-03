@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 189c8e04b9473a34db661fe5925d75b5
+timeCreated: 1547983564
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 118057
+  packageName: Game 2D Water Kit
+  packageVersion: 1.4.8
+  assetPath: Assets/Game2DWaterKit/Runtime/Scripts/Animation/WaterAnimationModule.cs
+  uploadId: 534182

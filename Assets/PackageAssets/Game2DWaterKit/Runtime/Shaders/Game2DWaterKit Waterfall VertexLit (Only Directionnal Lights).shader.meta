@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 59f78cde34306d547b1fc28798d88a16
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 118057
+  packageName: Game 2D Water Kit
+  packageVersion: 1.4.8
+  assetPath: Assets/Game2DWaterKit/Runtime/Shaders/Game2DWaterKit Waterfall VertexLit
+    (Only Directionnal Lights).shader
+  uploadId: 534182

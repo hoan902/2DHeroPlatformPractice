@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: a771ce28d6261614bb741f7fb480e961
+timeCreated: 1547983565
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 118057
+  packageName: Game 2D Water Kit
+  packageVersion: 1.4.8
+  assetPath: Assets/Game2DWaterKit/Runtime/Scripts/Ripples/WaterConstantRipplesModule.cs
+  uploadId: 534182

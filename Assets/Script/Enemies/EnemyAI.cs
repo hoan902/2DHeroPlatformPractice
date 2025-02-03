@@ -39,6 +39,11 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float m_viewDistance;
     [SerializeField] float m_nextWayPointDistance = 3f;
     [SerializeField] float m_radiusDistance;
+    
+    [Header("---- Audio Sounds Config")]
+    [SerializeField] private AudioClip m_slashAudio;
+    [SerializeField] private AudioClip m_agroAudio;
+    [SerializeField] private AudioClip m_walkAudio;
 
     // --- Private Variables zone --- 
     private int m_atkStyleChange = 1;
@@ -51,6 +56,7 @@ public class EnemyAI : MonoBehaviour
     private int m_direction;
     private Vector2 m_baseScale;
     private bool m_isInAtkRange = false;
+    private bool m_detectedPlayer = false;
 
     [Header("____ Current State ____")]
     [SerializeField] private State m_state;
@@ -86,6 +92,7 @@ public class EnemyAI : MonoBehaviour
         switch (m_state)
         {
             case State.Roaming:
+                m_detectedPlayer = false;
                 m_dangerNoti.gameObject.SetActive(false);
                 m_detectVisionCollider.enabled = true;
                 m_argoCollider.enabled = false;
@@ -111,6 +118,12 @@ public class EnemyAI : MonoBehaviour
                     m_state = State.Roaming;
                     return;
                 }
+
+                if (m_detectedPlayer == false)
+                {
+                    SoundManager.PlaySound3D(m_agroAudio, 15f, false, transform.position);
+                    m_detectedPlayer = true;
+                }
                 m_dangerNoti.gameObject.SetActive(true);
                 UpdateDirection(m_playerInfo.transform);
                 m_rb2D.velocity = new Vector2(m_direction * m_speed, m_rb2D.velocity.y);
@@ -129,6 +142,7 @@ public class EnemyAI : MonoBehaviour
                 m_rb2D.velocity = new Vector2(0, m_rb2D.velocity.y);
                 if (Time.time >= m_atkingTime)
                 {
+                    SoundManager.PlaySound3D(m_slashAudio, 20f, false, transform.position);
                     if (m_atkStyleChange > 2)
                         m_atkStyleChange = 1;
                     if (m_terrianDetection.IsGrounded())
@@ -252,17 +266,19 @@ public class EnemyAI : MonoBehaviour
     void AE_AtkDamageEnd1()
     {
         m_atk1.DisableAttack();
-        Debug.LogError("DISABLE 1");
     }
     void AE_AtkDamageEnd2()
     {
         m_atk2.DisableAttack();
-        Debug.LogError("DISABLE 2");
         m_isAtking = false;
         if (m_isInAtkRange) 
             return;
         m_state = State.ArgoPlayer;
         m_detectVisionCollider.enabled = true;
         m_argoCollider.enabled = true;
+    }
+    void AE_walkSound()
+    {
+        SoundManager.PlaySound3D(m_walkAudio, 10f, false, transform.position);
     }
 }

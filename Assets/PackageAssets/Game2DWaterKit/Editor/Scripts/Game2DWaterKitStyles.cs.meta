@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: eb5750e1e097bc74d94211d465679c1d
+timeCreated: 1583208974
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 118057
+  packageName: Game 2D Water Kit
+  packageVersion: 1.4.8
+  assetPath: Assets/Game2DWaterKit/Editor/Scripts/Game2DWaterKitStyles.cs
+  uploadId: 534182

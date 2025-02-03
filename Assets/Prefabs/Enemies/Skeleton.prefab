@@ -1444,6 +1444,9 @@ MonoBehaviour:
   m_viewDistance: 0
   m_nextWayPointDistance: 3
   m_radiusDistance: 0
+  m_slashAudio: {fileID: 8300000, guid: d5b3cf975cbdebe43b50c154bdac8fa3, type: 3}
+  m_agroAudio: {fileID: 8300000, guid: ba58ab28a4678ba47b2721803d6c7dff, type: 3}
+  m_walkAudio: {fileID: 8300000, guid: 0a0aff7aba717e9488213cfbfb99c9ac, type: 3}
   m_state: 0
   m_platformLayerMask:
     serializedVersion: 2
@@ -1467,6 +1470,8 @@ MonoBehaviour:
   currentHealth: 200
   healthBar: {fileID: 8715469718641829405}
   deathEffect: {fileID: 96925128418647070, guid: 33a6880047fb02c4697b3a7b34977414, type: 3}
+  m_hurtAudio: {fileID: 8300000, guid: 3c9c0f1aa3b69c04b81369ac01a6bc9c, type: 3}
+  m_dieAudio: {fileID: 8300000, guid: 628d551138b8e4b45b40f3674de85daf, type: 3}
 --- !u!114 &3776192537869413768
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c34a1eff2b9bc324185c8db73c9726dc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 118057
+  packageName: Game 2D Water Kit
+  packageVersion: 1.4.8
+  assetPath: Assets/Game2DWaterKit/Runtime/Scripts/Ripples/WaterWaterfallRipplesModule.cs
+  uploadId: 534182

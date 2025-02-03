@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     #region === SerializeField ------------------------------------------
+    [Header("---- Player Movement Configs")]
     [FormerlySerializedAs("platformLayerMask")] [SerializeField]
     private LayerMask m_platformLayerMask;
 
@@ -55,13 +56,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip m_walkAudio;
     [SerializeField] private AudioClip m_jumpAudio;
     [SerializeField] private AudioClip m_rollAudio;
-    [Header("----------------------------")]
     #endregion
 
     #region === Private ------------------------------------------
     float m_nextRollingTime = 0f;
     float m_nextBlockingTime = 0f;
     float m_atkingTime = 0f;
+    int m_extraJumpCount;
 
     TerrianDetection m_terrianDetection;
     CeilingCheck m_ceilingCheck;
@@ -81,9 +82,11 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region === Public ------------------------------------------
-    public Transform attackPoint;
+    [HideInInspector]
     public TextMeshProUGUI Timer;
+    [HideInInspector]
     public Text RollCooldownUI;
+    [HideInInspector]
     public Image RollCooldownUIIcon;
     #endregion
     
@@ -130,7 +133,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //--- Checking UI Rolling CD ---
-        m_terrianDetection.IsGrounded();
+        if (m_terrianDetection.IsGrounded())
+            m_extraJumpCount = 1;
+        
         m_ceilingCheck.IsCeilingCheck();
         float remainingCD = m_nextRollingTime - Time.time;
         if (remainingCD > 0)
@@ -157,11 +162,9 @@ public class PlayerMovement : MonoBehaviour
             m_buttonPress = KeyPressType.None;
 
         //--- jumping assign key --
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) && !m_rolling && m_terrianDetection.IsGrounded())
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && !m_rolling /*&& m_terrianDetection.IsGrounded()*/)
         {
-            m_isBlocking = false;
-            m_boxCollider2D.enabled = true;
-            m_buttonPress = KeyPressType.Jump;
+            Jumping();
         }
 
         //--- Atking assign key --
@@ -241,12 +244,12 @@ public class PlayerMovement : MonoBehaviour
             case KeyPressType.Left:
                 MovingDirection(-1);
                 break;
-            case KeyPressType.Jump:
+            /*case KeyPressType.Jump:
                 SoundManager.PlaySound(m_jumpAudio, false);
                 m_animator.SetTrigger("Jump");
                 m_animator.SetBool("Grounded", m_terrianDetection.IsGrounded());
-                m_rgbd2d.velocity = Vector2.up * m_jumpForce;
-                break;
+                Jumping();
+                break;*/
             case KeyPressType.Atk:
                 m_isAtking = true;
                 if (atkStyleChange > 3)
@@ -314,6 +317,20 @@ public class PlayerMovement : MonoBehaviour
             m_delayToIdle = 0.05f;
             m_animator.SetInteger("AnimState", 1);
         }
+    }
+
+    private void Jumping()
+    {
+        if (m_extraJumpCount == 0)
+            return;
+        m_isBlocking = false;
+        m_boxCollider2D.enabled = true;
+        if (!m_terrianDetection.IsGrounded() && m_extraJumpCount > 0)
+            m_extraJumpCount -= 1;
+        SoundManager.PlaySound(m_jumpAudio, false);
+        m_animator.SetTrigger("Jump");
+        m_animator.SetBool("Grounded", m_terrianDetection.IsGrounded());
+        m_rgbd2d.velocity = Vector2.up * m_jumpForce;
     }
     
     //---------------- Animation Events ---------------------

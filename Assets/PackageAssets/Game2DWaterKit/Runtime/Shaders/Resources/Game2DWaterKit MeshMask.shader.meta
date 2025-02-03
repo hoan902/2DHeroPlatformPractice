@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 5e5291a0e8612d1468a0cc27c3135e8e
+timeCreated: 1583206943
+licenseType: Store
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 118057
+  packageName: Game 2D Water Kit
+  packageVersion: 1.4.8
+  assetPath: Assets/Game2DWaterKit/Runtime/Shaders/Resources/Game2DWaterKit MeshMask.shader
+  uploadId: 534182

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ef0f470129394c241b99144fdbeee95d
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 118057
+  packageName: Game 2D Water Kit
+  packageVersion: 1.4.8
+  assetPath: Assets/Game2DWaterKit/Runtime/Shaders/Game2DWaterKitWaterfall.cginc
+  uploadId: 534182

@@ -221,13 +221,12 @@ MonoBehaviour:
   m_atk1: {fileID: 483146260985108992}
   m_atk2: {fileID: 4466880929999630435}
   m_atk3: {fileID: 8361298773350041351}
-  m_slashAudio: {fileID: 8300000, guid: 4da60e96da64791419c7ca5c6f861d15, type: 3}
+  m_slashAudio: {fileID: 8300000, guid: ed2cbec0ae941084a96147790b050697, type: 3}
   m_blockAudio: {fileID: 8300000, guid: b34944a997e0c4b4382234604ac4a719, type: 3}
-  m_hurtAudio: {fileID: 8300000, guid: 55b722d18bfdefe4c8bf9f72ad369d4a, type: 3}
-  m_walkAudio: {fileID: 8300000, guid: 556988f2810dee14898e3211407807a6, type: 3}
-  m_jumpAudio: {fileID: 8300000, guid: 66985c5d0f0d29a4fa37d67140c9da63, type: 3}
-  m_rollAudio: {fileID: 8300000, guid: 520074ad181e6c94396a674dbe0469b0, type: 3}
-  attackPoint: {fileID: 2045688727222765728}
+  m_hurtAudio: {fileID: 8300000, guid: 3f5887275e9e6824f91dfad1b6834114, type: 3}
+  m_walkAudio: {fileID: 8300000, guid: 280e7b7acd3c54b4c8f75058cb815406, type: 3}
+  m_jumpAudio: {fileID: 8300000, guid: 9b9ef2c3052c3d74abb815ffa63da845, type: 3}
+  m_rollAudio: {fileID: 8300000, guid: 4180c0c2e4474894c821ca1ae80ee3dc, type: 3}
   Timer: {fileID: 0}
   RollCooldownUI: {fileID: 0}
   RollCooldownUIIcon: {fileID: 0}

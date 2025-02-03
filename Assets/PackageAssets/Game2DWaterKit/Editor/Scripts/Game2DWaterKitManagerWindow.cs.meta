@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 104011d42394ae449ab3a89c331cb912
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 118057
+  packageName: Game 2D Water Kit
+  packageVersion: 1.4.8
+  assetPath: Assets/Game2DWaterKit/Editor/Scripts/Game2DWaterKitManagerWindow.cs
+  uploadId: 534182
